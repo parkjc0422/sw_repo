@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_margin="10dp"
+              android:gravity="center_horizontal"
+              android:layout_width="40dp"
+              android:layout_height="100dp">
+    <com.brion.subwayproject.ui.custom.VProgress
+            android:id="@+id/trainTypeVisual"
+            android:max="5"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:progressTint="@color/colorSeparator"
+            android:layout_weight="1"
+            android:layout_width="10dp"
+            android:layout_height="0dp"/>
+    <TextView
+            android:fontFamily="sans-serif"
+            android:textSize="10dp"
+            android:text="asdasd"
+            android:id="@+id/trainNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:fontFamily="sans-serif"
+            android:textSize="10dp"
+            android:id="@+id/trainState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

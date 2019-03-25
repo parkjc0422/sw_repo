@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+    <TextView
+            android:textSize="14dp"
+            android:fontFamily="sans-serif"
+            android:id="@+id/lineNumber"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/trainInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+</LinearLayout>
