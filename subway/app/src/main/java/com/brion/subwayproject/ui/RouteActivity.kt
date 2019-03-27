@@ -13,14 +13,13 @@ class RouteActivity : FragmentActivity() {
         val START = "START"
         val END = "END"
     }
-    var routeModel: RouteMapper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_route)
 
+        initComponent()
         initFragment()
-        getRouteIntfo()
     }
     lateinit var fragment:RouteInfoFragment
     private fun initFragment () {
@@ -35,30 +34,19 @@ class RouteActivity : FragmentActivity() {
         finishActivity(1)
     }
 
-    lateinit var from : String
-    lateinit var to:String
-    private fun getRouteIntfo () {
+    fun initComponent () {
         from = intent.getStringExtra(START)
         to = intent.getStringExtra(END)
 
-        val configure = ConfigProvider.getInstance(this)
-
-        val fromId = configure.getIdFromName(from)
-        val toId = configure.getIdFromName(to)
-        RouteManager().getRoute(fromId as String, toId as String, {
-            it ->
-            routeModel = it
-            bindViewInfo()
-        })
+        fromSubway.text = from
+        toSubway.text = to
     }
 
-    private fun bindViewInfo () {
-        runOnUiThread {
-            routeModel?.let {
-                fromSubway.text = "${it.route.startStationName}"
-                toSubway.text = "${it.route.endStationName}"
-                fragment.setData(it)
-            }
-        }
+    lateinit var from : String
+    lateinit var to:String
+
+    fun showProgress(boolean: Boolean) {
+
     }
+
 }

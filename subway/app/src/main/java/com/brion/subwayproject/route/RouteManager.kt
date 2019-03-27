@@ -7,6 +7,7 @@ import com.brion.subwayproject.route.model.RouteMapper
 import com.brion.subwayproject.route.parser.RouteXmlParser
 import com.brion.subwayproject.route.provider.ConfigProvider
 import com.brion.subwayproject.route.provider.RouteProvider
+import com.brion.subwayproject.ui.RouteInfoFragment
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -16,7 +17,7 @@ import retrofit2.Response
 class RouteManager {
     val TAG = "RouteManager"
 
-    fun getRoute(fromId:String, toId:String, complete: (RouteMapper?)->Unit) {
+    fun getRoute(fromId:String, toId:String, routeApiType: RouteInfoFragment.RouteApiType, complete: (RouteMapper?)->Unit) {
         var service = RouteProvider().getRouteService()
 
         val strRequestBody = getRequestBody(fromId, toId)

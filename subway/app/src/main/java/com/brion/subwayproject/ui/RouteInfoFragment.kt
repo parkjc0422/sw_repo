@@ -13,12 +13,12 @@ import com.brion.subwayproject.route.RouteManager
 import com.brion.subwayproject.route.model.RouteMapper
 import com.brion.subwayproject.route.provider.ConfigProvider
 import com.brion.subwayproject.ui.custom.TrainDistributionAdapter
+import com.brion.subwayproject.utils.krCurrency
 import kotlinx.android.synthetic.main.fragment_route_info.*
 
 class RouteInfoFragment : Fragment() {
-
-    fun setData(model:RouteMapper) {
-
+    enum class RouteApiType {
+        Fast, Convenience
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,6 +30,22 @@ class RouteInfoFragment : Fragment() {
 
 
         initData()
+        getRouteIntfo(RouteApiType.Fast)
+    }
+
+    private fun initComponent () {
+        // Total time 29m
+        totalTime.text = ""
+        // 00:00~00:00
+        startEndTime.text = ""
+        // 2개
+        passCount.text = ""
+        // 1회
+        transCount.text = ""
+        // 1,250원
+        cardPrice.text = krCurrency(routeModel.route.price.toInt())
+
+
     }
 
     /**
@@ -71,17 +87,19 @@ class RouteInfoFragment : Fragment() {
         trainDistribution.adapter = adapter
     }
 
-
-    private fun getRouteIntfo () {
+    lateinit var routeModel:RouteMapper
+    public fun getRouteIntfo (type:RouteApiType) {
         val parent = activity as RouteActivity
         val configure = ConfigProvider.getInstance(context as Context)
 
         val fromId = configure.getIdFromName(parent.from)
         val toId = configure.getIdFromName(parent.to)
-        RouteManager().getRoute(fromId as String, toId as String, {
-            it ->
-//            routeModel = it
-//            bindViewInfo()
+
+        parent.showProgress(true)
+        RouteManager().getRoute(fromId as String, toId as String, type, complete = {
+            routeModel = it as RouteMapper
+            parent.showProgress(false)
+            initComponent()
         })
     }
 
