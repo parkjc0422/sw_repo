@@ -8,38 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.SubwayMapActivity">
 
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <RadioGroup
-                android:id="@+id/mapTypeGroup"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <RadioButton
-                    android:id="@+id/mapTypeRoute"
-                    android:checked="true"
-                    android:fontFamily="sans-serif"
-                    android:layout_weight="1"
-                    android:text="경로 안내"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
-            <RadioButton
-                    android:id="@+id/mapTypeInfo"
-                    android:fontFamily="sans-serif"
-                    android:text="지하철 정보"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
-        </RadioGroup>
-    </LinearLayout>
-    <Button
-            android:text="경로 탐색"
-            android:id="@+id/searchRoute"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
     <WebView
             android:layout_weight="1"
             android:id="@+id/subwayMap"

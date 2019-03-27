@@ -8,4 +8,12 @@
         <attr name="bottomLeftCorner" format="dimension"/>
         <attr name="allCorner" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="CircleTextViewCorner">
+        <attr name="bgColor" format="color"/>
+        <attr name="startBgCorner" format="color"/>
+        <attr name="endBgCorner" format="color"/>
+        <attr name="strokeWidth" format="integer"/>
+    </declare-styleable>
+
 </resources>

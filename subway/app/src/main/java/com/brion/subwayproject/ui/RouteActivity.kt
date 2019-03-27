@@ -13,9 +13,9 @@ class RouteActivity : FragmentActivity() {
         initFragment()
     }
 
-    fun initFragment () {
-        var fragment = RouteInfoFragment.instance
-        var transaction = supportFragmentManager.beginTransaction()
+    private fun initFragment () {
+        val fragment = RouteInfoFragment.instance
+        val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.routeContent, fragment)
         transaction.commit()
     }

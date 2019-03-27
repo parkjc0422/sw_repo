@@ -32,4 +32,8 @@
     <color name="line_w">#b7b7b7</color>
     <color name="line_sh">#8be800</color>
 
+    <color name="alertStart">#10a643</color>
+    <color name="alertInfo">#ea8406</color>
+    <color name="alertEnd">#052f93</color>
+
 </resources>

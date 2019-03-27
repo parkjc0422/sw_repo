@@ -24,8 +24,11 @@ class RouteInfoFragment : Fragment() {
         initData()
     }
 
+    /**
+     * TODO : remake function
+     */
+    private fun initData () {
 
-    fun initData () {
         val adapter = TrainDistributionAdapter()
 
         var item = TrainDistributionAdapter.TrainDistributionItem()
