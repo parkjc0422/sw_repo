@@ -24,20 +24,26 @@ class SubwayInterface {
         this.openAPIKey = openAPIKey
         type = InfoType.Route
     }
-
+    var alert:RouteCheckDialog? = null
     /**
      * from javascript map (subway map)
      */
     @JavascriptInterface
     public fun showSubwayInfo (station :String){
-        RouteCheckDialog(this.mContext, station,
-                { it -> listener?.subwayStart(it) }
-                , this::showInfo
-                , { it-> listener?.subwayEnd(it) })
-                .show()
+        alert = RouteCheckDialog(this.mContext, station,
+                { it ->
+                    listener?.subwayStart(it)
+                    alert?.dismiss()
+                } , this::showInfo
+                , { it->
+            listener?.subwayEnd(it)
+            alert?.dismiss()
+        })
+        alert?.show()
     }
 
     private fun showInfo(station:String) {
+        alert?.dismiss()
         val intent = Intent(this.mContext, TrafficSubwayInfoTypeA::class.java)
         intent.putExtra("OpenAPIKey", this.openAPIKey)
         intent.putExtra("StationNM", station)

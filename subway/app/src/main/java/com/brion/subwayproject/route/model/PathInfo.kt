@@ -9,6 +9,5 @@ import java.io.Serializable
 
 class PathInfo :Serializable{
     @SerializedName("pathList")
-    lateinit var pathList:Array<Path>
-
+    lateinit var pathList:List<Path>
 }

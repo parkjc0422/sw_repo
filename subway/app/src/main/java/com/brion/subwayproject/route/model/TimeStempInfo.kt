@@ -10,5 +10,5 @@ import java.io.Serializable
 
 class TimeStempInfo:Serializable {
     @SerializedName("lastTime")
-    lateinit var lastTime:Array<TimeStemp>
+    lateinit var lastTime:List<TimeStemp>
 }

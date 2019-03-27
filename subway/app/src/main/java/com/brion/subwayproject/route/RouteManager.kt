@@ -3,6 +3,7 @@ package com.brion.subwayproject.route
 import android.content.Context
 import android.util.Log
 import com.brion.subwayproject.http.getRequestBody
+import com.brion.subwayproject.route.model.RouteMapper
 import com.brion.subwayproject.route.parser.RouteXmlParser
 import com.brion.subwayproject.route.provider.ConfigProvider
 import com.brion.subwayproject.route.provider.RouteProvider
@@ -15,7 +16,7 @@ import retrofit2.Response
 class RouteManager {
     val TAG = "RouteManager"
 
-    fun getRoute(fromId:String, toId:String, complete: (String?)->Unit) {
+    fun getRoute(fromId:String, toId:String, complete: (RouteMapper?)->Unit) {
         var service = RouteProvider().getRouteService()
 
         val strRequestBody = getRequestBody(fromId, toId)
@@ -29,9 +30,10 @@ class RouteManager {
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 Log.d(TAG, "message : ${response.body()}")
-//                var parser = RouteXmlParser("${response.body()}")
-//                parser.test()
-                complete(response.body())
+                var parser = RouteXmlParser("${response.body()}")
+                var modelMapper = parser.parseModel()
+
+                complete(modelMapper)
             }
         })
     }
@@ -57,7 +59,7 @@ class RouteManager {
                 Log.d(TAG, "message : ${response.body()}")
                 var parser = RouteXmlParser("${response.body()}")
 //                parser.test()
-                Log.d(TAG , "Message : ${parser.parseModel().toString()}")
+//                Log.d(TAG , "Message : ${parser.parseModel().toString()}")
             }
         })
 

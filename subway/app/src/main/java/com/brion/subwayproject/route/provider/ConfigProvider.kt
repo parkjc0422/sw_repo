@@ -20,7 +20,7 @@ class ConfigProvider {
         loadInfo()
     }
     companion object {
-        var instance :ConfigProvider? = null
+        private var instance :ConfigProvider? = null
         fun getInstance(context: Context) : ConfigProvider{
             if(instance == null) instance = ConfigProvider(context)
             return instance as ConfigProvider

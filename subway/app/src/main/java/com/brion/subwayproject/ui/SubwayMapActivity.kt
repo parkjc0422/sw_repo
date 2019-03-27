@@ -41,20 +41,37 @@ class SubwayMapActivity : FragmentActivity() , SubwayInterface.SubwayMapListener
         mWebViewInterface.listener = this
     }
 
+    override fun startActivityForResult(intent: Intent? , requestCode: Int) {
+        super.startActivityForResult(intent , requestCode)
+        Log.d(TAG, "info : $requestCode")
+        /**
+         * Clear text info
+         */
+        subwayStart("")
+        subwayEnd("")
+    }
 
     override fun subwayEnd(station: String) {
-        subwayTo.text = station
-        checkAndRunRoute()
+        runOnUiThread {
+            subwayTo.text = station
+            checkAndRunRoute()
+        }
     }
 
     override fun subwayStart(station: String) {
-        subwayFrom.text = station
-        checkAndRunRoute()
+        runOnUiThread {
+            subwayFrom.text = station
+            checkAndRunRoute()
+        }
     }
 
+    val ReqRoutePathInfo = 1
     private fun checkAndRunRoute(){
         if(subwayFrom.text.isNotEmpty() && subwayTo.text.isNotEmpty()) {
-            startActivity(Intent(this, RouteActivity::class.java))
+            var routeInfo = Intent(this, RouteActivity::class.java)
+            routeInfo.putExtra(RouteActivity.START,subwayFrom.text.toString())
+            routeInfo.putExtra(RouteActivity.END,subwayTo.text.toString())
+            startActivityForResult(routeInfo, ReqRoutePathInfo)
         }
     }
 }

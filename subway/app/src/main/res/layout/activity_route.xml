@@ -13,6 +13,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/fromSubway"
                     android:textColor="@color/colorBlack"
                     android:textAlignment="center"
                     android:text="영등포시장역"
@@ -29,6 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/toSubway"
                     android:textColor="@color/colorBlack"
                     android:text="국회의사당역"
                     android:textAlignment="center"

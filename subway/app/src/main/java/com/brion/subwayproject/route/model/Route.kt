@@ -3,7 +3,7 @@ package com.brion.subwayproject.route.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Route: Serializable {
+open class Route: Serializable {
     @SerializedName("sLang")
     lateinit var sLang:String
 
@@ -79,12 +79,6 @@ class Route: Serializable {
     @SerializedName("endLongitude")
     lateinit var endLongitude:String
 
-    @SerializedName("sPath")
-    lateinit var sPath:PathInfo
-
     @SerializedName("lastTimeList")
     lateinit var lastTimeList:TimeStempInfo
-
-    @SerializedName("sTransfer")
-    lateinit var sTransfer:TransferInfo
 }

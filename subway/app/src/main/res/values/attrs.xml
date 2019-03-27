@@ -10,10 +10,11 @@
     </declare-styleable>
 
     <declare-styleable name="CircleTextViewCorner">
-        <attr name="bgColor" format="color"/>
+        <attr name="backgroundColor" format="color"/>
         <attr name="startBgCorner" format="color"/>
         <attr name="endBgCorner" format="color"/>
         <attr name="strokeWidth" format="integer"/>
+        <attr name="shapeType" format="integer"/>
     </declare-styleable>
 
 </resources>
