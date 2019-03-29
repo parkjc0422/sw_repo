@@ -39,9 +39,9 @@ class RouteInfoFragment : Fragment() {
         // 00:00~00:00
         startEndTime.text = ""
         // 2개
-        passCount.text = ""
+        passCount.text = "${routeModel.route}개"
         // 1회
-        transCount.text = ""
+        transCount.text = "${routeModel.route.transferNum}회"
         // 1,250원
         cardPrice.text = krCurrency(routeModel.route.price.toInt())
 

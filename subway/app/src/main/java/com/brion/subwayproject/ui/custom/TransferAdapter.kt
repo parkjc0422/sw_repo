@@ -18,6 +18,7 @@ class TransferAdapter(val context:Context) :RecyclerView.Adapter<TransferAdapter
 
     val TRAIN_INFO= 1
     val TRANSFER_INFO= 2
+    val TRANSFER_TRAIN_INFO = 3
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): TViewHolder {
         var layoutInflater = LayoutInflater.from(context)
@@ -43,14 +44,20 @@ class TransferAdapter(val context:Context) :RecyclerView.Adapter<TransferAdapter
         if(model.routeType != RouteMapper.RouteType.TransferNode) return TRAIN_INFO
         else {
             if(position%2 ==0)
-                return TRAIN_INFO
+                return TRANSFER_TRAIN_INFO
             else
                 return TRANSFER_INFO
         }
     }
 
     override fun onBindViewHolder(p0: TViewHolder, p1: Int) {
+        if(TRAIN_INFO == getItemViewType(p1)) {
 
+        } else if(TRANSFER_INFO== getItemViewType(p1)) {
+
+        } else if(TRANSFER_TRAIN_INFO== getItemViewType(p1)) {
+
+        }
     }
 
     open class TViewHolder(view:View):RecyclerView.ViewHolder (view)
@@ -65,7 +72,11 @@ class TransferAdapter(val context:Context) :RecyclerView.Adapter<TransferAdapter
     }
 
     class TrainInfoVH(val view:View):TViewHolder(view) {
-        
+
+    }
+
+    class TransferTrainInfoVH(val view:View):TViewHolder(view) {
+
     }
 
 
