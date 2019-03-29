@@ -4,6 +4,7 @@ package com.brion.subwayproject.ui
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.brion.subwayproject.route.RouteManager
 import com.brion.subwayproject.route.model.RouteMapper
 import com.brion.subwayproject.route.provider.ConfigProvider
 import com.brion.subwayproject.ui.custom.TrainDistributionAdapter
+import com.brion.subwayproject.ui.custom.TransferAdapter
 import com.brion.subwayproject.utils.krCurrency
 import kotlinx.android.synthetic.main.fragment_route_info.*
 
@@ -30,8 +32,19 @@ class RouteInfoFragment : Fragment() {
 
 
         initData()
-        getRouteIntfo(RouteApiType.Fast)
+//        getRouteIntfo(RouteApiType.Fast)
+        checkView()
     }
+
+    fun checkView () {
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        trainRouteInfo.layoutManager = layoutManager
+
+        var adapter = TransferAdapter(context as Context)
+        trainRouteInfo.adapter = adapter
+
+    }
+
 
     private fun initComponent () {
         // Total time 29m

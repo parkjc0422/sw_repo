@@ -24,20 +24,17 @@ class SubwayMapActivity : FragmentActivity() , SubwayInterface.SubwayMapListener
     }
 
     private fun initSubwayMap () {
-        subwayMap.webViewClient = WebViewClient()
-        subwayMap.settings.let {
-            Log.d(TAG, "initialize subway Map settings!!!")
-            @JavascriptInterface // TODO: check is available
-            it.javaScriptEnabled = true
-            it.builtInZoomControls = true
-            it.setSupportZoom(true)
-            it.displayZoomControls = false
-            it.defaultTextEncodingName = "UTF-8"
-        }
+        subwayMap.setWebViewClient(WebViewClient())
+        subwayMap.getSettings().setJavaScriptEnabled(true)
+        subwayMap.getSettings().setBuiltInZoomControls(true)
+        subwayMap.getSettings().setSupportZoom(true)
+        subwayMap.getSettings().setDisplayZoomControls(false)
+        subwayMap.getSettings().setDefaultTextEncodingName("UTF-8")
+
 
         mWebViewInterface = SubwayInterface(this, subwayMap, SubWayApiKey)
         subwayMap.addJavascriptInterface(mWebViewInterface, "Android")
-        subwayMap.loadUrl("file:///android_asset/mSeoul_Subway.html")
+        subwayMap.loadUrl("file:///android_asset/subway_map.html")
         mWebViewInterface.listener = this
     }
 

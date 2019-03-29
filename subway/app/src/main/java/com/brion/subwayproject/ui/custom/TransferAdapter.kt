@@ -5,82 +5,78 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.brion.subwayproject.R
 import com.brion.subwayproject.route.model.RouteMapper
 
-class TransferAdapter(val context:Context) :RecyclerView.Adapter<TransferAdapter.TViewHolder>(){
-    lateinit var model:RouteMapper
-    var transferInfo:Array<TransferLine>
-    init {
-        transferInfo = emptyArray()
-    }
+class TransferAdapter(val context:Context) :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    lateinit var routeMapper: RouteMapper
+    val NoTransferInfo = 1
+    val TransferInfo = 2
+    val RouteInfo = 3
 
-    val TRAIN_INFO= 1
-    val TRANSFER_INFO= 2
-    val TRANSFER_TRAIN_INFO = 3
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
+        var inflater = LayoutInflater.from(p0.context)
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): TViewHolder {
-        var layoutInflater = LayoutInflater.from(context)
 
-        return TViewHolder(layoutInflater.inflate(R.layout.cell_train_view,p0, false))
+
+        if(getItemViewType(p1) == NoTransferInfo) return NoTransferInfoVh(inflater.inflate(R.layout.cell_train_no_transfer,p0,false))
+        else if(getItemViewType(p1) == RouteInfo) return RouteInfoVh(inflater.inflate(R.layout.cell_transfer_info,p0,false))
+        else return TransferInfoVh(inflater.inflate(R.layout.cell_train_view,p0,false))
     }
 
     override fun getItemCount(): Int {
-        when (model.routeType) {
-            RouteMapper.RouteType.NextNode -> {
-                return 1
-            }
-            RouteMapper.RouteType.NoTransferNode -> {
-                return 1
-            }
-            RouteMapper.RouteType.TransferNode-> {
-                return model.route.transferNum.toInt()
-            }
+
+        if(routeMapper.trasferRoute.sTransfer.transferList.size == 0) {
+            return 1
+        } else {
+            return routeMapper.trasferRoute.sTransfer.transferList.size*2 - 1
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        if(model.routeType != RouteMapper.RouteType.TransferNode) return TRAIN_INFO
-        else {
-            if(position%2 ==0)
-                return TRANSFER_TRAIN_INFO
-            else
-                return TRANSFER_INFO
+        if(routeMapper.trasferRoute.sTransfer.transferList.isEmpty()) {
+            return NoTransferInfo
+        } else {
+            if(position %2 == 0) return TransferInfo
+            else return RouteInfo
         }
     }
 
-    override fun onBindViewHolder(p0: TViewHolder, p1: Int) {
-        if(TRAIN_INFO == getItemViewType(p1)) {
+    override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-        } else if(TRANSFER_INFO== getItemViewType(p1)) {
-
-        } else if(TRANSFER_TRAIN_INFO== getItemViewType(p1)) {
-
+    class NoTransferInfoVh(val view: View):RecyclerView.ViewHolder(view) {
+        var lineColorImage:ImageView
+        var from:TextView
+        var to:TextView
+        init {
+            lineColorImage = view.findViewById(R.id.lineColor)
+            from = view.findViewById(R.id.fromRoute)
+            to = view.findViewById(R.id.toRoute)
         }
     }
 
-    open class TViewHolder(view:View):RecyclerView.ViewHolder (view)
+    class TransferInfoVh(val view:View) :RecyclerView.ViewHolder(view){
+        var lineColorImage:ImageView
+        var from:TextView
+        var to:TextView
+        init {
+            lineColorImage = view.findViewById(R.id.lineColor)
+            from = view.findViewById(R.id.fromRoute)
+            to = view.findViewById(R.id.toRoute)
+        }
+    }
 
-    class TransferInfoVH(val view:View):TViewHolder (view){
-        var fastTransferInfo:TextView
+
+    class RouteInfoVh(val view: View) :RecyclerView.ViewHolder(view) {
+        var fastTransferNum:TextView
         var runTime:TextView
         init {
-            fastTransferInfo = view.findViewById(R.id.fastTransferNum)
+            fastTransferNum = view.findViewById(R.id.fastTransferNum)
             runTime = view.findViewById(R.id.runTime)
         }
-    }
-
-    class TrainInfoVH(val view:View):TViewHolder(view) {
-
-    }
-
-    class TransferTrainInfoVH(val view:View):TViewHolder(view) {
-
-    }
-
-
-    inner class TransferLine {
-
     }
 }

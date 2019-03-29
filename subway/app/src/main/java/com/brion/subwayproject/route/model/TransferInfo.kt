@@ -8,6 +8,7 @@ import java.io.Serializable
  */
 
 class TransferInfo : Serializable {
+
     @SerializedName("transferList")
     lateinit var transferList:Array<Transfer>
 }

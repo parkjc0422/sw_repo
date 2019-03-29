@@ -2,12 +2,36 @@
 <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="250dp"
-        android:layout_height="100dp" android:orientation="vertical">
-    <com.brion.subwayproject.ui.custom.CircleTextView
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+    <TextView
+            android:id="@+id/fromRoute"
+            android:layout_marginLeft="30dp"
+            android:textSize="13dp"
+            android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="asd"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
+            android:text="영등포\n시장"
+            android:textAlignment="center"
+            android:background="@drawable/circle_line_1"
+            android:layout_width="80dp" android:layout_height="80dp"/>
 
+    <ImageView
+            android:id="@+id/lineColor"
+            android:layout_weight="1"
+            android:background="@color/line1"
+            android:layout_width="0dp"
+            android:layout_height="3dp"/>
+
+    <TextView
+            android:id="@+id/toRoute"
+            android:layout_marginRight="30dp"
+            android:textSize="13dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="영등포\n시장"
+            android:textAlignment="center"
+            android:background="@drawable/circle_line_1"
+            android:layout_width="80dp" android:layout_height="80dp"/>
 </LinearLayout>

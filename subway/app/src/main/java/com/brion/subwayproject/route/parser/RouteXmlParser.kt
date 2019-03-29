@@ -2,55 +2,97 @@ package com.brion.subwayproject.route.parser
 
 import android.util.Log
 import com.brion.subwayproject.route.model.*
+import com.brion.subwayproject.route.model.TransferRoute
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParseException
-import com.google.gson.JsonSyntaxException
-import fr.arnaudguyon.xmltojsonlib.JsonToXml
 import fr.arnaudguyon.xmltojsonlib.XmlToJson
+import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.Exception
 
 
 class RouteXmlParser (val originMessage:String) {
-    fun test () {
-        var xmlToJson = XmlToJson.Builder(originMessage).build()
-        var jsonObject = xmlToJson.toJson()
-    }
 
     fun parseModel() :RouteMapper{
-        var routeMapper : RouteMapper = RouteMapper()
+        var routeMapper = RouteMapper()
         var xmlToJson = XmlToJson.Builder(originMessage).build()
         var jsonObject = xmlToJson.toJson()
 
 
         var obj = jsonObject?.getJSONObject("route")
-
-        var result:Route = Route()
+        var output = TransferRoute()
+        var result = Route()
         var gson = Gson()
         try {
-            /**
-             * Transfer Node
-             */
-            result = gson.fromJson(obj.toString(), TransferRoute::class.java)
-            routeMapper.routeType = RouteMapper.RouteType.TransferNode
-        }catch (err: JsonSyntaxException) {
+            result = gson.fromJson(obj.toString(), Route::class.java)
 
-            try {
+            obj?.let {
                 /**
-                 * there is no transfer
+                 * @SerializedName("sPath")
+                 * @SerializedName("sTransfer")
                  */
-                result = gson.fromJson(obj.toString() , NoTranferRoute::class.java)
-                routeMapper.routeType = RouteMapper.RouteType.NoTransferNode
-            }catch (execpt: JsonSyntaxException ){
-                /**
-                 * Next Node
-                 */
-                routeMapper.routeType = RouteMapper.RouteType.NextNode
-                result = gson.fromJson(obj.toString() , NextRoute::class.java)
+                var pathList = (it["sPath"] as JSONObject)["pathList"]
+                var transfer = it["sTransfer"]
+
+                Log.d("asd","kmkmk")
+                if(transfer is String) {
+                    if(pathList is JSONArray) {
+                        /**
+                         * Path info get
+                         */
+                        var list = it["sPath"] as JSONObject
+                        var cList = gson.fromJson(list.toString(), PathInfo::class.java)
+                        output.sPath = cList
+                    } else {
+                        /**
+                         * make path info
+                         */
+                        var cPath= gson.fromJson(pathList.toString(), Path::class.java)
+                        var pathInfo = PathInfo()
+                        pathInfo.pathList = listOf(cPath)
+                        output.sPath = pathInfo
+                    }
+
+                    output.sTransfer = TransferInfo()
+                    output.sTransfer.transferList = emptyArray()
+                } else {
+                    output = TransferRoute()
+                    var temp = (transfer as JSONObject)["transferList"]
+                    if(temp is JSONArray) {
+                        var list = gson.fromJson(transfer.toString(), TransferInfo::class.java)
+                        output.sTransfer = list
+                    } else {
+                        var item = gson.fromJson(temp.toString(), Transfer::class.java)
+                        var transferInfo = TransferInfo()
+                        transferInfo.transferList = arrayOf(item)
+                        output.sTransfer = transferInfo
+
+                    }
+                    if(pathList is JSONArray) {
+                        /**
+                         * Path info get
+                         */
+                        var list = it["sPath"] as JSONObject
+                        var cList = gson.fromJson(list.toString(), PathInfo::class.java)
+                        output.sPath = cList
+                    } else {
+                        /**
+                         * make path info
+                         */
+                        var cPath= gson.fromJson(pathList.toString(), Path::class.java)
+                        var pathInfo = PathInfo()
+                        pathInfo.pathList = listOf(cPath)
+                        output.sPath = pathInfo
+                    }
+                }
+
             }
+        } catch (exp:Exception) {
+            exp.printStackTrace()
         }
 
+        routeMapper.trasferRoute = output
         routeMapper.route = result
         return routeMapper
     }
 }
+

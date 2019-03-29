@@ -35,15 +35,15 @@ class RouteActivity : FragmentActivity() {
     }
 
     fun initComponent () {
-        from = intent.getStringExtra(START)
-        to = intent.getStringExtra(END)
+//        from = intent.getStringExtra(START)
+//        to = intent.getStringExtra(END)
 
         fromSubway.text = from
         toSubway.text = to
     }
 
-    lateinit var from : String
-    lateinit var to:String
+    var from : String = ""
+    var to:String = ""
 
     fun showProgress(boolean: Boolean) {
 
