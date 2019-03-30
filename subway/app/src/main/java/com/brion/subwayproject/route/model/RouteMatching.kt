@@ -6,28 +6,69 @@ class RouteMatching {
     lateinit var steps:String
     lateinit var transfer:String
     lateinit var price:String
-    lateinit var paths:Array<Road>
+    lateinit var paths:MutableList<Road>
+    lateinit var transfers:MutableList<TransferRoad>
 
     class Road{
-        lateinit var from:String
-        lateinit var to:String
-        lateinit var lineNumber:String
-        lateinit var fastTransferLoc:String
-        lateinit var walkingTime:String
+        var from = ""
+        var to= ""
+    }
+
+    class TransferRoad {
+        var fastTransferLoc = ""
+        var walkingTime = ""
     }
 
     fun loadInfo(mapper: RouteMapper) {
-        totalTime = mapper.route.totalTime
+        totalTime = "${mapper.route.totalTime}"
         var timeString = mapper.route.writeDate.split(" ")[1].split(":")
-        var h1 = timeString[0]
-        var m1 = timeString[1]
-        var m2 = (m1 + totalTime).toInt()
-        var h2 = h1.toInt()
-        if(m2 > 60){
-            m2 -= 60
-            h2 += 1
+        var h1 = timeString[0].toInt()
+        var m1 = timeString[1].toInt()
+        var totalMin = totalTime.toInt()
+        var h2 = h1 + (totalMin / 60)
+        var m2 = m1 + (totalMin % 60)
+        if(m1 >= 60) {
+            h1 += 1
+            m1 -= 60
         }
-        if(h2 > 23) h2 -= 24
         startEndTime = "$h1:$m1~$h2:$m2"
+
+        steps = "${mapper.trasferRoute.sPath.pathList.size - mapper.trasferRoute.sTransfer.transferList.size}"
+        transfer = "${mapper.trasferRoute.sTransfer.transferList.size}"
+        price = "${mapper.route.price}"
+
+
+        paths = mutableListOf()
+        var items = mutableListOf<MutableList<Road>>()
+        var item = mutableListOf<Road>()
+        mapper.trasferRoute.sPath.pathList.forEach {
+            if(it.pathType.equals("spath")) {
+                var i = Road()
+                i.from = it.startStationName
+                i.to = it.endStationName
+                item.add(i)
+            } else {
+                items.add(item)
+                item = mutableListOf<Road>()
+            }
+        }
+        items.add(item)
+        items.forEach {
+            var road = Road()
+            road.from = it.first().from
+            road.to = it.last().to
+
+            paths.add(road)
+        }
+
+
+        transfers = mutableListOf<TransferRoad>()
+        mapper.trasferRoute.sTransfer.transferList.forEach {
+            var i = TransferRoad()
+            i.walkingTime = "환승 (도보 ${it.timeavg}분)"
+            //빠른 환승 10-4 05:42"
+            i.fastTransferLoc = "빠른 환승 ${it.train}-${it.door}"
+            transfers.add(i)
+        }
     }
 }

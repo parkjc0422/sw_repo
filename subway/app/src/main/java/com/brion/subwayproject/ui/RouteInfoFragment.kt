@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import com.brion.subwayproject.R
 import com.brion.subwayproject.route.RouteManager
 import com.brion.subwayproject.route.model.RouteMapper
+import com.brion.subwayproject.route.model.RouteMatching
 import com.brion.subwayproject.route.provider.ConfigProvider
 import com.brion.subwayproject.ui.custom.TrainDistributionAdapter
 import com.brion.subwayproject.ui.custom.TransferAdapter
@@ -31,35 +33,40 @@ class RouteInfoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-        initData()
-//        getRouteIntfo(RouteApiType.Fast)
-        checkView()
-    }
-
-    fun checkView () {
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        trainRouteInfo.layoutManager = layoutManager
-
-        var adapter = TransferAdapter(context as Context)
-        trainRouteInfo.adapter = adapter
-
+//        initData()
+        getRouteIntfo(RouteApiType.Fast)
     }
 
 
     private fun initComponent () {
+        var mapper =RouteMatching()
+        mapper.loadInfo(routeModel)
         // Total time 29m
-        totalTime.text = ""
+        totalTime.text = "${mapper.totalTime} 분"
         // 00:00~00:00
-        startEndTime.text = ""
+        startEndTime.text = mapper.startEndTime
         // 2개
-        passCount.text = "${routeModel.route}개"
+//        passCount.text = "${routeModel.route}개"
+        passCount.text = "${mapper.steps} 개"
         // 1회
-        transCount.text = "${routeModel.route.transferNum}회"
+        transCount.text = "${mapper.transfer}회"
         // 1,250원
-        cardPrice.text = krCurrency(routeModel.route.price.toInt())
+        cardPrice.text = krCurrency("${mapper.price}".toInt())
 
 
+        initRouteInfo()
+        initData()
     }
+
+    fun initRouteInfo () {
+        trainRouteInfo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        var adapter = TransferAdapter(context as Context)
+        adapter.routeMapper = routeModel
+
+        trainRouteInfo.adapter = adapter
+    }
+
 
     /**
      * TODO : remake function
