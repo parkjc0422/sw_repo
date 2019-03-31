@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
-    <TextView
+    <com.brion.subwayproject.ui.custom.CircularTextView
             android:id="@+id/fromRoute"
             android:layout_marginLeft="30dp"
             android:textSize="13dp"
@@ -14,7 +14,6 @@
             android:gravity="center"
             android:text="영등포\n시장"
             android:textAlignment="center"
-            android:background="@drawable/circle_line_1"
             android:layout_width="80dp" android:layout_height="80dp"/>
 
     <ImageView
@@ -24,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="3dp"/>
 
-    <TextView
+    <com.brion.subwayproject.ui.custom.CircularTextView
             android:id="@+id/toRoute"
             android:layout_marginRight="30dp"
             android:textSize="13dp"
@@ -32,6 +31,5 @@
             android:gravity="center"
             android:text="영등포\n시장"
             android:textAlignment="center"
-            android:background="@drawable/circle_line_1"
             android:layout_width="80dp" android:layout_height="80dp"/>
 </LinearLayout>

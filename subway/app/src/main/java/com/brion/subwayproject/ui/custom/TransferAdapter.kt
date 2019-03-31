@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.brion.subwayproject.R
 import com.brion.subwayproject.route.model.RouteMapper
+import com.brion.subwayproject.route.model.RouteMatching
 
 class TransferAdapter(val context:Context) :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     lateinit var routeMapper: RouteMapper
@@ -18,8 +19,6 @@ class TransferAdapter(val context:Context) :RecyclerView.Adapter<RecyclerView.Vi
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
         var inflater = LayoutInflater.from(p0.context)
-
-
 
         if(getItemViewType(p1) == NoTransferInfo) return NoTransferInfoVh(inflater.inflate(R.layout.cell_train_no_transfer,p0,false))
         else if(getItemViewType(p1) == RouteInfo) return RouteInfoVh(inflater.inflate(R.layout.cell_transfer_info,p0,false))
@@ -31,7 +30,7 @@ class TransferAdapter(val context:Context) :RecyclerView.Adapter<RecyclerView.Vi
         if(routeMapper.trasferRoute.sTransfer.transferList.size == 0) {
             return 1
         } else {
-            return routeMapper.trasferRoute.sTransfer.transferList.size*2 - 1
+            return routeMapper.trasferRoute.sTransfer.transferList.size*2 + 1
         }
     }
 
@@ -45,13 +44,35 @@ class TransferAdapter(val context:Context) :RecyclerView.Adapter<RecyclerView.Vi
     }
 
     override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var matcher = RouteMatching(context)
+        matcher.loadInfo(routeMapper)
+        if(getItemViewType(p1) == NoTransferInfo) {
+            var view = p0 as NoTransferInfoVh
+            view.from.text = matcher.paths[0].from
+            view.to.text = matcher.paths[0].to
+            view.lineColorImage.setBackgroundColor(matcher.paths[0].lineColor)
+            view.from.strokeColor = matcher.paths[0].lineColor
+            view.to.strokeColor = matcher.paths[0].lineColor
+        } else if(getItemViewType(p1) == RouteInfo) {
+            var view = p0 as RouteInfoVh
+            var pos = (p1 - 1)/2
+            view.runTime.text = matcher.transfers[pos].walkingTime
+            view.fastTransferNum.text = matcher.transfers[pos].fastTransferLoc
+        } else if(getItemViewType(p1) == TransferInfo) {
+            var view = p0 as TransferInfoVh
+            var pos = p1 / 2
+            view.from.text = matcher.paths[pos].from
+            view.to.text = matcher.paths[pos].to
+            view.lineColorImage.setBackgroundColor(matcher.paths[pos].lineColor)
+            view.from.strokeColor = matcher.paths[pos].lineColor
+            view.to.strokeColor = matcher.paths[pos].lineColor
+        }
     }
 
     class NoTransferInfoVh(val view: View):RecyclerView.ViewHolder(view) {
         var lineColorImage:ImageView
-        var from:TextView
-        var to:TextView
+        var from:CircularTextView
+        var to:CircularTextView
         init {
             lineColorImage = view.findViewById(R.id.lineColor)
             from = view.findViewById(R.id.fromRoute)
@@ -61,8 +82,8 @@ class TransferAdapter(val context:Context) :RecyclerView.Adapter<RecyclerView.Vi
 
     class TransferInfoVh(val view:View) :RecyclerView.ViewHolder(view){
         var lineColorImage:ImageView
-        var from:TextView
-        var to:TextView
+        var from:CircularTextView
+        var to:CircularTextView
         init {
             lineColorImage = view.findViewById(R.id.lineColor)
             from = view.findViewById(R.id.fromRoute)

@@ -8,13 +8,8 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <kr.go.seoul.trafficsubway.TrafficSubwayButtonTypeB
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    <kr.go.seoul.trafficsubway.TrafficSubwayButtonTypeA
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
+    <com.brion.subwayproject.ui.custom.CircularTextView
+        android:id="@+id/test"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 </LinearLayout>
