@@ -8,6 +8,7 @@
     <com.brion.subwayproject.ui.custom.VProgress
             android:id="@+id/trainTypeVisual"
             android:max="5"
+            android:progressBackgroundTint="@color/colorLightGray"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:progressTint="@color/colorSeparator"
             android:layout_weight="1"

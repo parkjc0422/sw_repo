@@ -1,6 +1,9 @@
 package com.brion.subwayproject.route.model
 
-class RouteMatching {
+import android.content.Context
+import com.brion.subwayproject.utils.getColor
+
+class RouteMatching(val context: Context) {
     lateinit var totalTime: String
     lateinit var startEndTime:String
     lateinit var steps:String
@@ -12,6 +15,7 @@ class RouteMatching {
     class Road{
         var from = ""
         var to= ""
+        var lineColor = -1
     }
 
     class TransferRoad {
@@ -46,6 +50,7 @@ class RouteMatching {
                 var i = Road()
                 i.from = it.startStationName
                 i.to = it.endStationName
+                i.lineColor = getColor(context, it.line)
                 item.add(i)
             } else {
                 items.add(item)
@@ -57,7 +62,7 @@ class RouteMatching {
             var road = Road()
             road.from = it.first().from
             road.to = it.last().to
-
+            road.lineColor = it.last().lineColor
             paths.add(road)
         }
 

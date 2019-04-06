@@ -22,24 +22,26 @@ import kotlinx.android.synthetic.main.fragment_route_info.*
 
 class RouteInfoFragment : Fragment() {
     enum class RouteApiType {
-        Fast, Convenience
-    }
+        Fast("1"), Convenience("4");
+        var value:String
+        constructor(value:String) {
+            this.value = value
+        }
 
+    }
+    var type = RouteApiType.Fast
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_route_info, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-
-//        initData()
-        getRouteIntfo(RouteApiType.Fast)
+        getRouteIntfo()
     }
 
 
     private fun initComponent () {
-        var mapper =RouteMatching()
+        var mapper =RouteMatching(context as Context)
         mapper.loadInfo(routeModel)
         // Total time 29m
         totalTime.text = "${mapper.totalTime} 분"
@@ -108,7 +110,7 @@ class RouteInfoFragment : Fragment() {
     }
 
     lateinit var routeModel:RouteMapper
-    public fun getRouteIntfo (type:RouteApiType) {
+    public fun getRouteIntfo () {
         val parent = activity as RouteActivity
         val configure = ConfigProvider.getInstance(context as Context)
 
@@ -123,6 +125,14 @@ class RouteInfoFragment : Fragment() {
         })
     }
 
+    fun loadInfo(type:RouteApiType) {
+        val parent = activity as RouteActivity
+        if(type != this.type) {
+            this.type = type
+            getRouteIntfo()
+            parent.showProgress(true)
+        }
+    }
 
     companion object {
         var instance = RouteInfoFragment()
