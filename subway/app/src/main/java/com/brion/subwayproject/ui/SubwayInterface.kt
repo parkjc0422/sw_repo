@@ -6,6 +6,7 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import com.brion.subwayproject.ui.custom.RouteCheckDialog
 import kr.go.seoul.trafficsubway.TrafficSubwayInfoTypeA
+import kr.go.seoul.trafficsubway.TrafficSubwayInfoTypeB
 
 class SubwayInterface {
     enum class InfoType {
@@ -44,7 +45,8 @@ class SubwayInterface {
 
     private fun showInfo(station:String) {
         alert?.dismiss()
-        val intent = Intent(this.mContext, TrafficSubwayInfoTypeA::class.java)
+
+        val intent = Intent(this.mContext, TrafficSubwayInfoTypeB::class.java)
         intent.putExtra("OpenAPIKey", this.openAPIKey)
         intent.putExtra("StationNM", station)
         this.mContext.startActivity(intent)

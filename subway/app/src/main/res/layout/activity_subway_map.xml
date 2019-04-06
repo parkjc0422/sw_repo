@@ -7,13 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.SubwayMapActivity">
-
-    <WebView
-            android:layout_weight="1"
-            android:id="@+id/subwayMap"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
     <LinearLayout
             android:padding="10dp"
             android:orientation="vertical"
@@ -56,4 +49,11 @@
                     android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
+    <WebView
+            android:layout_weight="1"
+            android:id="@+id/subwayMap"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+
 </LinearLayout>
