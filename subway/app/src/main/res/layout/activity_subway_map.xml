@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.SubwayMapActivity">
     <LinearLayout
+            android:background="@color/stationInfoBack"
             android:padding="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -17,12 +18,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
+                    android:textColor="@color/colorWhite"
                     android:textSize="15dp"
                     android:fontFamily="sans-serif"
                     android:text="출발"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"/>
             <TextView
+                    android:textColor="@color/colorWhite"
                     android:id="@+id/subwayFrom"
                     android:textSize="15dp"
                     android:fontFamily="sans-serif"
@@ -36,12 +39,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
+                    android:textColor="@color/colorWhite"
                     android:textSize="15dp"
                     android:fontFamily="sans-serif"
                     android:text="도착"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"/>
             <TextView
+                    android:textColor="@color/colorWhite"
                     android:id="@+id/subwayTo"
                     android:textSize="15dp"
                     android:fontFamily="sans-serif"

@@ -1,5 +1,6 @@
 package com.brion.subwayproject.ui.custom
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.TextView
 
 
-class TrainDistributionAdapter : RecyclerView.Adapter<TrainDistributionAdapter.TrainDistributionVH>(){
+class TrainDistributionAdapter(val context:Context) : RecyclerView.Adapter<TrainDistributionAdapter.TrainDistributionVH>(){
     var items:MutableList<TrainDistributionItem> = mutableListOf()
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): TrainDistributionVH {
@@ -24,7 +25,7 @@ class TrainDistributionAdapter : RecyclerView.Adapter<TrainDistributionAdapter.T
 
     override fun onBindViewHolder(p0: TrainDistributionVH, p1: Int) {
         items[p1].let {
-            var adapter = TrainAdapter()
+            var adapter = TrainAdapter(context)
             adapter.item = it
             p0.recyclerView.adapter = adapter
             p0.lineNumber.text = "${it.linenNumber}"

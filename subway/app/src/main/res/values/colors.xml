@@ -6,7 +6,8 @@
 
     <color name="colorBlack">#000</color>
 
-    <color name="colorSeparator">#AAA</color>
+    <color name="colorSeparator_temp">#AAA</color>
+    <color name="colorSeparator">#d9d9d9</color>
     <color name="colorLightGray">#DDD</color>
     <color name="colorWhite">#FFF</color>
 
@@ -33,8 +34,12 @@
     <color name="line_w">#b7b7b7</color>
     <color name="line_sh">#8be800</color>
 
-    <color name="alertStart">#10a643</color>
-    <color name="alertInfo">#ea8406</color>
-    <color name="alertEnd">#052f93</color>
+    <color name="alertTitle">#262626</color>
 
+
+    <color name="trafficNormal">#ffcc00</color>
+    <color name="trafficCongest">#FFFF0000</color>
+    <color name="trafficLight">#FF0000FF</color>
+
+    <color name="stationInfoBack">#262626</color>
 </resources>

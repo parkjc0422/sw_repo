@@ -75,7 +75,7 @@ class RouteInfoFragment : Fragment() {
      */
     private fun initData () {
 
-        val adapter = TrainDistributionAdapter()
+        val adapter = TrainDistributionAdapter(context as Context)
 
         var item = TrainDistributionAdapter.TrainDistributionItem()
         item.array = arrayOf(TrainDistributionAdapter.TrainType.Congest,

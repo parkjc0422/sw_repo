@@ -1,7 +1,7 @@
 package com.brion.subwayproject.ui.custom
 
+import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.brion.subwayproject.R
 
 
-class TrainAdapter :RecyclerView.Adapter<TrainAdapter.TrainVh>(){
+class TrainAdapter(val context:Context) :RecyclerView.Adapter<TrainAdapter.TrainVh>(){
     lateinit var item: TrainDistributionAdapter.TrainDistributionItem
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): TrainVh {
@@ -26,13 +26,16 @@ class TrainAdapter :RecyclerView.Adapter<TrainAdapter.TrainVh>(){
             p0.status.progress = it.value
             when (it) {
                 TrainDistributionAdapter.TrainType.Lite -> {
-                    p0.status.progressTintList = ColorStateList.valueOf(Color.BLUE)
+//                    p0.status.progressTintList = ColorStateList.valueOf(Color.BLUE)
+                    p0.status.progressTintList = ColorStateList.valueOf(context.resources.getColor(R.color.trafficLight))
                 }
                 TrainDistributionAdapter.TrainType.Congest -> {
-                    p0.status.progressTintList = ColorStateList.valueOf(Color.RED)
+//                    p0.status.progressTintList = ColorStateList.valueOf(Color.RED)
+                    p0.status.progressTintList = ColorStateList.valueOf(context.resources.getColor(R.color.trafficCongest))
                 }
                 TrainDistributionAdapter.TrainType.Normal -> {
-                    p0.status.progressTintList = ColorStateList.valueOf(Color.YELLOW)
+//                    p0.status.progressTintList = ColorStateList.valueOf(Color.YELLOW)
+                    p0.status.progressTintList = ColorStateList.valueOf(context.resources.getColor(R.color.trafficNormal))
                 }
             }
             p0.content.text = it.getString()
