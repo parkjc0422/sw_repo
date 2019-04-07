@@ -38,7 +38,7 @@ class RouteActivity : FragmentActivity() {
 
     fun initComponent () {
         alert = TransparentProgressDialog(this,
-                R.drawable.progress,
+                R.drawable.loading_img,
                 R.style.TransparentProgressDialog)
 
         from = intent.getStringExtra(START)
