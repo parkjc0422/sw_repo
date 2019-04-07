@@ -77,6 +77,9 @@ class TransferAdapter(val context:Context) :RecyclerView.Adapter<RecyclerView.Vi
             lineColorImage = view.findViewById(R.id.lineColor)
             from = view.findViewById(R.id.fromRoute)
             to = view.findViewById(R.id.toRoute)
+
+            from.setStrokeWidth(3)
+            to.setStrokeWidth(3)
         }
     }
 
@@ -88,6 +91,9 @@ class TransferAdapter(val context:Context) :RecyclerView.Adapter<RecyclerView.Vi
             lineColorImage = view.findViewById(R.id.lineColor)
             from = view.findViewById(R.id.fromRoute)
             to = view.findViewById(R.id.toRoute)
+
+            from.setStrokeWidth(3)
+            to.setStrokeWidth(3)
         }
     }
 

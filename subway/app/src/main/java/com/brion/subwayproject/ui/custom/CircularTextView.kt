@@ -17,7 +17,7 @@ import android.widget.TextView
 
 
 class CircularTextView : TextView {
-    private var strokeWidth: Float = 2.0f
+    private var strokeWidth: Float = 3.0f
     internal var strokeColor: Int = Color.TRANSPARENT
     internal var solidColor: Int = Color.WHITE
 
@@ -56,7 +56,6 @@ class CircularTextView : TextView {
     fun setStrokeWidth(dp: Int) {
         val scale = context.resources.displayMetrics.density
         strokeWidth = dp * scale
-
     }
 
     fun setStrokeColor(color: String) {
