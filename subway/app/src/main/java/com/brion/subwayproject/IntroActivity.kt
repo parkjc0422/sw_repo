@@ -34,6 +34,7 @@ class IntroActivity : FragmentActivity() {
             alert.dismiss()
 
             startActivity(Intent(this, SubwayMapActivity::class.java))
+            finish()
         }.start()
     }
 

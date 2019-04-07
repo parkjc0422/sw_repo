@@ -8,7 +8,8 @@ import android.view.Gravity
 import android.app.Dialog
 import android.content.Context
 import android.widget.ImageView
-
+import com.brion.subwayproject.utils.dpTOPx
+import com.brion.subwayproject.utils.pxToDp
 
 
 /**
@@ -30,9 +31,25 @@ class TransparentProgressDialog(context: Context , resourceIdOfImage: Int, style
         layout.orientation = LinearLayout.VERTICAL
         val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT)
+
+        val w= dpTOPx(context, 100.toFloat()).toInt()
+            //pxToDp(context, 100.toFloat()).toInt()
+
+        val h= dpTOPx(context, 100.toFloat()).toInt()
+            //pxToDp(context, 100.toFloat()).toInt()
+        val ivParams = LinearLayout.LayoutParams(w, h)
+
+
         iv = ImageView(context)
         iv.setImageResource(resourceIdOfImage)
-        layout.addView(iv , params)
+
+//        iv.layoutParams = ivParams
+//        iv.layoutParams.let {
+//            it.width = w
+//            it.height = h
+//        }
+
+        layout.addView(iv , ivParams)
         addContentView(layout , params)
     }
 
