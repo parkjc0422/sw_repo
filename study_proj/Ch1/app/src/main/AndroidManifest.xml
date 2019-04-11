@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.stu.sample">
 
     <application
@@ -8,8 +9,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".cp3.ThreadActivity"></activity>
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".cp4.CutromThrowableActivity"></activity>
+
+        <receiver
+            android:name=".cp2.receiver.DownloadReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".cp2.BroadCastActivity" />
+        <activity android:name=".cp3.ThreadActivity" />
         <activity android:name=".cp2.EventActivity" />
         <activity android:name=".cp2.ToActivity" />
         <activity android:name=".cp2.FromActivity" />

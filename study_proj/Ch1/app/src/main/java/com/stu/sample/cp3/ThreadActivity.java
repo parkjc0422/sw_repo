@@ -16,6 +16,9 @@ public class ThreadActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
 
 
+        /**
+         * Ui Thread
+         */
         new Thread(new Runnable() {
             @Override
             public void run() {
