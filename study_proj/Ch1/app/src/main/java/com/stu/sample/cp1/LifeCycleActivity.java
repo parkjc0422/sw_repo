@@ -8,7 +8,7 @@ import android.os.Bundle;
 import com.stu.sample.R;
 import com.stu.sample.utils.CLog;
 
-public class LifeCycleActivity extends AppCompatActivity {
+public class LifeCycleActivity extends  AppCompatActivity {
     private final String TAG = "LifeCycleActivity";
 
     /**
@@ -20,7 +20,7 @@ public class LifeCycleActivity extends AppCompatActivity {
      * Initialize and configure UI
      * Initialize Loaders
      *
-     * @param savedInstanceState
+     * @param savedInstanceState 화면이 전환될 때, onSaveInstanceState  함수를 수행했다면 저장될 데이터
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,8 @@ public class LifeCycleActivity extends AppCompatActivity {
     }
 
     /**
-     * 실제 activity는 살아 있지만, 사용자의 이벤트를 감지 하지 못하는 곳으로 갈시(다른 activity로 전환)
-     * 아래의 함수가 call 된다.
+     * 실제 activity는 살아 있지만, 사용자의 이벤트를 감지 하지 못하는 곳으로 갈 때(다른 activity로 전환)
+     * onPause 함수가 call 된다.
      * 그렇다면 onStop과의 차이는 무엇일까?
      * 두 상태의 차이는 쉽게 생각하면, onPause는 같은 앱에 있는 다른화면으로 이동시 onStop까지는 호출 되지 않는다.
      *
@@ -95,9 +95,6 @@ public class LifeCycleActivity extends AppCompatActivity {
         CLog.d(TAG, "activity onStop call");
     }
 
-
-
-
     /**
      * 더이상 필요가 없어진 activity의 경우 해당 function이 call 된다.
      * 가령 더이상 해당 activity를 유지하고 싶지 않은 경우 {{@link Activity#finish()}}를 호출하면, 해당 activity는
@@ -113,12 +110,12 @@ public class LifeCycleActivity extends AppCompatActivity {
 
     /**
      * activity 의 life cycle 에 명시되지 않는 함수이다.
-     * 해당 함수는 화면 상태값읋 보존 하기 위한 값.
+     * 해당 함수는 화면 상태값을 보존 하기 위한 값.
      * bundle에 화면의 status를 정장하고 있다가,
      * {@link Activity#onCreate(Bundle)}혹은  {@link Activity#onRestoreInstanceState(Bundle)}에서
      * 화면의 상태 값을 지정할 수 있다.
      * {@info 해당 함수는 정식 life cycle 이 아니므로, 무조건 상태값을 저장하고 있다는 보장은 하지못한다. }
-     *
+     * 보통 onPause() 함수 전에 호출
      *
      * @param outState
      * @param outPersistentState
@@ -126,5 +123,19 @@ public class LifeCycleActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    /**
+     * 화면 전환 할 때 onSaveInstanceState에 의해 보존된 상태 값이 존재한다면 복구하는 함수
+     * 정식 life cycle이 아님.
+     * 보통 onResume() 함수전에 호출
+     *
+     * @param savedInstanceState
+     *
+     * */
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+
     }
 }
