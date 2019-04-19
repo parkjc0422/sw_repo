@@ -8,5 +8,5 @@ import retrofit2.http.POST
 
 interface CustomService{
     @POST("/testing")
-    fun getParam(@Body request:RequestBody)
+    fun getParam(@Body request:RequestBody):Call<Model>
 }

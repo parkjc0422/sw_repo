@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_Chh);
+        setContentView(R.layout.activity_main_chh);
 
         //EditText
         editText = (EditText)findViewById(R.id.txtEdit);
@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         mul = (Button)findViewById(R.id.btnMul);
         sub = (Button)findViewById(R.id.btnSub);
         add = (Button)findViewById(R.id.btnAdd);
+
+
         equal = div = (Button)findViewById(R.id.btnEqual);
 
         clear = (Button)findViewById(R.id.btnClear);
