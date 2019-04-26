@@ -53,6 +53,7 @@ public class LifeCycleActivity extends  AppCompatActivity {
      *
      * Start (or resume) animations / CPU intensive actions
      * Acquire battery-intensive or exclusive-access system resources (Camera, BroadcastReceivers, GPS, etc)
+     * 특정 행위들은 CPU 점유율이 높을 수 있으므로 늦은 초기화를 시켜준다.
      */
     @Override
     protected void onResume() {

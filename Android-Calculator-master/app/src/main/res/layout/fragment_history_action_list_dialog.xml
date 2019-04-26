@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2017 Andrius Baruckis
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/list_item_spacing_half"
+        android:paddingLeft="@dimen/list_item_spacing"
+        android:paddingRight="@dimen/list_item_spacing"
+        android:paddingTop="@dimen/list_item_spacing_half">
+
+        <TextView
+            android:id="@+id/label_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/button_clear_history"
+            android:text="@string/history"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <ImageButton
+            android:id="@id/button_clear_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/clear_history"
+            android:src="@drawable/ic_delete_black_24dp" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/list_item_spacing_half"
+        android:paddingTop="@dimen/list_item_spacing_half"
+        tools:context="com.baruckis.calculator.HistoryActionListDialogFragment"
+        tools:listitem="@layout/fragment_history_action_list_dialog_item" />
+
+</LinearLayout>
