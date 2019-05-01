@@ -1,4 +1,4 @@
-package com.chh.hw1;
+package com.chh.ttt;
 
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
-
+    int ip;
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
@@ -43,6 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
         ViewHolder.imageView.setImageResource(itemData.get(position).num);
         ViewHolder.textView.setText(itemData.get(position).text);
+        ip = ViewHolder.getAdapterPosition();
     }
 
     @Override
@@ -50,4 +51,3 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
         return itemData.size();
     }
 }
-

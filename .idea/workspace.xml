@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fbb438e-9e5a-42ec-9c09-09d3246dc88c" name="Default Changelist" comment="calc commit">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sw_repo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/MainActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/res/layout/activity_main_Chh.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DocuChh/study" beforeDir="false" afterPath="$PROJECT_DIR$/DocuChh/study" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/MyAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/MyAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/itemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/itemData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/res/layout/item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/study_proj/Ch1/app/src/main/res/layout/item.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,46 +19,70 @@
     <session id="1776654753">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="2" />
-          <entry key="xml" value="1" />
+          <entry key="java" value="6" />
+          <entry key="study" value="1" />
+          <entry key="xml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="2" />
-          <entry key="XML" value="1" />
+          <entry key="JAVA" value="6" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="XML" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="12" />
+          <entry key="java" value="13" />
+          <entry key="study" value="49" />
           <entry key="txt" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="12" />
-          <entry key="PLAIN_TEXT" value="17" />
+          <entry key="JAVA" value="13" />
+          <entry key="PLAIN_TEXT" value="66" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/itemData.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="49" lean-forward="true" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+            <state relative-caret-position="266">
+              <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/res/layout/activity_main2.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DocuChh/study">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -79,7 +102,7 @@
         <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/res/layout/activity_main_Chh.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="12" column="17" lean-forward="true" selection-end-line="150" selection-end-column="15" />
+              <caret line="12" column="17" selection-end-line="150" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -94,12 +117,13 @@
       <list>
         <option value="$PROJECT_DIR$/study_proj/Ch1/app/src/main/res/layout/activity_main_Chh.xml" />
         <option value="$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/MainActivity.java" />
+        <option value="$PROJECT_DIR$/DocuChh/study" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1924" />
-    <option name="y" value="55" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1893" />
+    <option name="y" value="53" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -108,6 +132,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -118,139 +144,12 @@
             <path>
               <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
               <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="stu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="stu" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="stu" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="CHH" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="stu" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="cp1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sw_repo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sw_repo" type="462c0819:PsiDirectoryNode" />
-              <item name="study_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="Ch1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
+              <item name="DocuChh" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -261,6 +160,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\admin\AndroidStudioProjects\sw_repo\study_proj\Ch1\app\src\main\res\layout" />
+      <recent name="C:\Users\admin\AndroidStudioProjects\sw_repo\study_proj\Ch1\app\src\main\res\drawable" />
       <recent name="C:\Users\admin\AndroidStudioProjects\sw_repo\study_proj\Ch1\app\src\main\java\com\stu\sample\CHH" />
     </key>
   </component>
@@ -287,28 +187,36 @@
       <option name="presentableId" value="Default" />
       <updated>1555593257918</updated>
     </task>
+    <task id="LOCAL-00001" summary="calc commit">
+      <created>1555593575054</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1555593575055</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1893" y="53" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32982087" />
-      <window_info id="Structure" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="TODO" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" visible="true" weight="0.32998884" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Preview" weight="0.3411514" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32982087" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="TODO" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="4" visible="true" weight="0.32998884" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Preview" order="2" weight="0.34488273" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -331,17 +239,36 @@
     <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/res/layout/activity_main_Chh.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="12" column="17" lean-forward="true" selection-end-line="150" selection-end-column="15" />
+          <caret line="12" column="17" selection-end-line="150" selection-end-column="15" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/MyAdapter.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/res/layout/item.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/itemData.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/java/com/stu/sample/CHH/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="49" lean-forward="true" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+        <state relative-caret-position="266">
+          <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study_proj/Ch1/app/src/main/res/layout/activity_main2.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DocuChh/study">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
         </state>
       </provider>
     </entry>

@@ -1,4 +1,4 @@
-package com.chh.hw1;
+package com.chh.ttt;
 
 import android.graphics.drawable.Drawable;
 
