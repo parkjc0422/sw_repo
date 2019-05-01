@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 앱에 대한 필수 정보를 시스템에 제공 -->
-<!-- 앱을 위한 자바 패키지명 정의 (시스템 상으로 유일해야 한다.) -->
-<!-- 앱을 구성하는 컴포넌트(Activity, Service, Broadcast, Content 등)들을 기술 -->
-<!-- 권한 설정 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.stu.sample">
 
     <application
+        android:name=".cp1.SApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".cp4.CutromThrowableActivity"></activity>
+        <activity android:name=".user.KHG.NetworkTestActivity"/>
+        <activity android:name=".cp4.CutromThrowableActivity" />
 
         <receiver
             android:name=".cp2.receiver.DownloadReceiver"
@@ -30,7 +28,8 @@
         <activity android:name=".cp2.MessageActivity" />
         <activity android:name=".cp1.LifeCycleActivity" />
         <activity android:name=".MainActivity">
-            <!-- Intent Filter를 통해  Component가 처리할 수 있는 기능이 무엇인지 정의-->
+
+            <!-- Intent Filter를 통해  Component가 처리할 수 있는 기능이 무엇인지 정의 -->
             <!-- MainActivity의 Action(어떤 작업을 처리 하는지)은 Main이고 category(어떤 Component 유형)는 Launcher -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,8 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
-    <!-- uses-permission을 통해 앱의 리소스 접근 및 기능 사용 권한 정의-->
 
 </manifest>

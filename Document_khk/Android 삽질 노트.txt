@@ -1,0 +1,71 @@
+<설정 및 환경 관련>
+* SDK Manager - Android SDK
+    SDK Platform 설치 필요, SDK Tools의 Android Emulator, SDK Platform-Tools, SDK-Tools 필요.
+    (특히, waiting for target device to come online 이 길어지면 확인해 볼 것.)
+
+* Tools - Kotlin - Configure Kotlin Plugin Updates를 실행한 뒤 최신버전 과 build.gradle(project) 안의 ext.kotlin_version을 맞춰줘야한다.
+
+* local.properties의 sdk.dir 자동으로 맞춰줌.
+
+*dependecies에서 jre로 되어있는 것을 jdk로 변경한다.
+implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version => implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version
+
+* Gradle Dependency> compile -> implementation
+
+* Package Name: Manifest 혹은 Gradle에서 설정가능 (Flavor로 b2b인지 b2c용인지 나눌 수 있다.)
+
+<코딩 관련>
+
+* Life Cycle은 어떤 동작이 필요한 시점에 특정 라이프 사이클 호출되어야 하는지가 중요하다.
+
+* var 변수명:변수타입
+* var(variable) VS val(valuable) 차이
+ - var는 get/set가능한 일반 변수
+ - val은 get만 가능한 상수
+
+* ? - nullable 변수 선언시 사용한다. (예. container:ViewGroup?)
+    - 코틀린엔 Non-null과 Nullable 타입이 존재함.
+
+* C#은 하나의 코드에 designer가 포함되어 있어서 컴포넌트를 id로 바로 불러올 수 있지만
+android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.synthetic.main.activity_login.*
+
+* resource는 코드 내에선 R 객체로 접근한다. 화면에서는 @타입/name으로 찾는다.(@color/colorWhite)
+    -> SetContentView가 선행으로 이루어야 FindViewById로 읽을 수 있음.    
+
+* 디자인은 C#의 designer 처럼 xml text를 건드리지 않고 design의 attributes(C#에서는 properties)를 조절한다.
+
+* Fragment는 Activity 안에 독립적으로 뜰 수 있는 화면
+
+* Constraint Layout VS Relative Layout
+ ConstraintLayout: 뷰의 수평적인 계층 구조, 성능도 빠름. => UI 배치의 편리함.
+ RelativeLayout: 뷰들 간에 정렬을 위해 새로운 ViewGroup 생성 필요.
+
+* Fragment -  하위 Activity로 봐도 무관함. 자체 생명주기를 가짐. 자체적으로 이벤트도 받음. 
+              Fragment 클래스를 구현해야 사용가능 함. Fragment 자체 layout 또한 필요함.
+              정적 추가: fragment, 동적 추가: FrameLayout
+
+* Missing Constraints in ConstraintLayout Error - ConstraintLayout 안의 View들이 parent인 ConstraintLayout에 연결시켜야 한다.
+
+* HTTP 통신 (POST 방식, 서울메트로에 요청)
+ 1. 라이브러리 khttp 사용하기 위해 app build에 'implementation group: 'khttp', name: 'khttp', version: '0.1.0'' 추가
+ 2. val policy = StrictMode.ThreadPolicy.Builder().permitAll().build() 선언 후 setThreadPolicy(policy) 선언 => android.os.strictmode$androidblockguardpolicy.onnetwork exception 발생
+    - StrictMode는 메인 스레드에서 디스크/네트워크 접근 등의 비효율적인 작업을 하려는 것을 감지함. (속도가 느려질 수 있는 동작을 미리 감지 함.), 오래 걸릴 수 있는 작업을 Main Thread와 분리하여 Android Not Response 방지.
+    - Callback, lifecycle 관련 등의 UI 이벤트 들은 모두 Main Thread에서 처리함.
+    - 디스크 접근: 파편화된 블록 모으기 작업을 수행하는 동안 지연발생 가능성 + 다른 프로세스가 삭제 작업을 진행하면 다른 프로세스의 IO 작업이 지연 + 메모리 여유 공간이 적을 수록 IO 지연
+    - 네트워크 접근: 예측 불가능 하므로 Main Thread에서 처리하면 안됨. (기본적으로 정책 적용됨)
+    - Thread 정책을 모두 허용하는 정책(permitAll().build())으로 설정한다.(setThreadPolicy)
+ 3. AndroidManifest.xml 안에 <user-permission android:name="android.permission.INTERNET" /> 선언. =>  java.lang.SecurityException: Permission denied (missing INTERNET permission?) 발생
+ 4. POST 방식, Query String을 mapOf("Key1" to "Value2",...)로 선언하여 payload에 넣고, post(url = "", data = payload)을 실행하면 Response 객체로 온다.
+ 5. Reponse 객체의 text 값을 보면 결과 값이 xml 형태로 날라온 것을 알 수 있다.
+ 
+ //참고: https://noota.tistory.com/entry/StrictMode-%EA%B0%84%EB%8B%A8-%EC%A0%95%EB%A6%AC, 
+        https://khttp.readthedocs.io/en/latest/user/quickstart.html
+
+참고) https://tjandroid.blogspot.com/2018/11/api-implementation.html
+
+생명주기) https://limkydev.tistory.com/32
+
+코드구조) https://dean92.tistory.com/20
+
+안드로이드 컴포넌트) https://limkydev.tistory.com/31?category=954016
+
