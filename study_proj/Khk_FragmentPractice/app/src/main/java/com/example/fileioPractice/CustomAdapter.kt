@@ -25,6 +25,11 @@ class CustomAdapter constructor(context: Context, items : List<String>) : Recycl
     override fun getItemCount(): Int = this.items.size
 
 }
+
+/**
+ * item view에 set하는 역할.
+ * @author khk
+ * */
 class CustomViewHolder constructor(itemView : View) : RecyclerView.ViewHolder(itemView){
     var item = itemView?.findViewById<TextView>(R.id.lineStringTv)
 

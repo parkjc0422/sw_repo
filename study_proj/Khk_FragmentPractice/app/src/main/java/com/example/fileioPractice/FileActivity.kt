@@ -1,6 +1,5 @@
 package com.example.fileioPractice
 
-import android.Manifest
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,9 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.fragmentpractice.R
 import java.io.*
-import android.content.pm.PackageManager
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
+import android.net.Uri
 import com.example.common.Constants
 
 class FileActivity : AppCompatActivity() {
@@ -24,14 +21,17 @@ class FileActivity : AppCompatActivity() {
         try {
 
             val openButton = findViewById<Button>(R.id.saveButton)
+            val callButton = findViewById<Button>(R.id.callButton)
+
             val editedString = findViewById<EditText>(R.id.editText)
+            val callNumber = findViewById<EditText>(R.id.numText)
 
             openButton.setOnClickListener{ fileSave(editedString.text.toString()) }
+            callButton.setOnClickListener{ call(callNumber.text.toString()) }
 
         }
         catch(ex: Exception){
-            ex.printStackTrace()
-            Toast.makeText(applicationContext, ex.message, Toast.LENGTH_LONG)
+            exceptionHandler(ex)
         }
     }
     /**
@@ -51,13 +51,11 @@ class FileActivity : AppCompatActivity() {
             bufferedWriter.close()
         }
         catch(ex:Exception){
-            // 어떤 에러가 발생했는지 확인
-            ex.printStackTrace()
-            Toast.makeText(applicationContext, ex.message, Toast.LENGTH_LONG).show()
+            exceptionHandler(ex)
         }
 
         try{
-            var fileLineList : List<String>?= null
+            var fileLineList: List<String>?
 
             var fileReader = FileReader (fileLocation + "fileIOPractice.txt")
             var bufferedReader = BufferedReader(fileReader)
@@ -69,8 +67,27 @@ class FileActivity : AppCompatActivity() {
             startActivity(intent)
         }
         catch(ex:Exception){
-            ex.printStackTrace()
-            Toast.makeText(applicationContext, ex.message, Toast.LENGTH_LONG).show()
+            exceptionHandler(ex)
         }
+    }
+
+    /**
+     *
+     * 입력한 번호를 다이얼 화면으로 넘겨준다.
+     * @author khk
+     *
+     * */
+    private fun call(numText : String){
+        try {
+            var uriString = "tel:" + numText
+            startActivity(Intent("android.intent.action.DIAL", Uri.parse(uriString)))
+        }catch (ex:Exception){
+            exceptionHandler(ex)
+        }
+    }
+    
+    private fun exceptionHandler(ex : Exception){
+        ex.printStackTrace()
+        Toast.makeText(this, ex.message, Toast.LENGTH_LONG)
     }
 }

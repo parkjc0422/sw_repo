@@ -9,6 +9,7 @@
 
 *dependecies에서 jre로 되어있는 것을 jdk로 변경한다.
 implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version => implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version
+// 참고: https://tjandroid.blogspot.com/2018/11/api-implementation.html
 
 * Gradle Dependency> compile -> implementation
 
@@ -57,15 +58,57 @@ android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.s
  3. AndroidManifest.xml 안에 <user-permission android:name="android.permission.INTERNET" /> 선언. =>  java.lang.SecurityException: Permission denied (missing INTERNET permission?) 발생
  4. POST 방식, Query String을 mapOf("Key1" to "Value2",...)로 선언하여 payload에 넣고, post(url = "", data = payload)을 실행하면 Response 객체로 온다.
  5. Reponse 객체의 text 값을 보면 결과 값이 xml 형태로 날라온 것을 알 수 있다.
- 
- //참고: https://noota.tistory.com/entry/StrictMode-%EA%B0%84%EB%8B%A8-%EC%A0%95%EB%A6%AC, 
+
+  //참고: https://noota.tistory.com/entry/StrictMode-%EA%B0%84%EB%8B%A8-%EC%A0%95%EB%A6%AC, 
         https://khttp.readthedocs.io/en/latest/user/quickstart.html
+ 
+* ListView : 모든 데이터에 대한 View를 만들고, View가 사라졌다가 나타날 때마다 리소스를 불러와야 함. (예. 화면을 아래로 스크롤 했다가 다시 위로 올릴 때 리소스 다시 불러옴.)
+            -> 메모리와 저장 공간을 많이 사용하므로 비효율적            
 
-참고) https://tjandroid.blogspot.com/2018/11/api-implementation.html
+* RecyclerView - ListView의 단점을 보완. (예. 300개의 dataSet이 있고 화면상에는 10개의 dataSet만 보여진다면 10개의 공간을 생성 후 그 공간을 재활용하여 300개를 보여준다.)
+ 1. 사용하기 위해 gradle에 추가한다.
+ 2. RecyclerView 를 layout에 선언한다. (id: mRecyclerView)
+ 3. RecyclerView에서 사용하는 항목 하나하나를 담당 할 item 뷰에 대한 xml도 추가한다.
+ 4. RecyclerView 를 위한 Activity를 생성한다.
+ 5. 어답터를 생성한다.
+    Adapter : 데이터의 원본을 받아서 관리하고, View가 출력할 수 있는 형태로 데이터를 제공하는 중간 객체. 받은 데이터를 어떻게 보여줄지 정해주는 바인딩 역할의 객체라 보면 됨.
+             어댑터와 연결된 원본 데이터가 변경되면, notifyDataSetChanged 메서드를 호출하여 화면에 다시 그려지도록 한다.
+    ViewHolder : RecyclerView 내 위치하는 곳의 item view와 metadata 정보를 갖고있는 역할.
+     => RecyclerView가 있고, 그 내부의 item view들에 data들을 binding 시켜주는 역할은 adapter가 전담한다.
+        Adapter는 각 item view의 정보를 갖고 있는 ViewHolder를 이용해서 각각의 item view에 알맞은 data를 binding 시켜준다.
+        그리고 LayoutManager가 각 item view들의 크기를 측정하고 위치를 지정하여 RecyclerView를 구성한다.
 
-생명주기) https://limkydev.tistory.com/32
+ 6. mRecyclerView에 어답터를 붙인다.
+ 7. mRecyclerView에 해당하는 layoutManager를 붙인다. (mRecyclerView.layoutManager = LinearLayoutManager(applicationContext))
+    LayoutManager : RecyclerView 내에 item View들의 크기를 측정하고 위치를 지정하고 언제 item View들을 재사용하는지에 대한 정책을 결정하는 역할.
 
-코드구조) https://dean92.tistory.com/20
+ // 참고 : https://blog.naver.com/mail1001/220682221473
 
-안드로이드 컴포넌트) https://limkydev.tistory.com/31?category=954016
+ * intent를 이용한 activity call
+  1. intent를 선언한다. Intent (현재 액티비티, 전달할 액티비티) (예. Intent(this, RecyclerViewActivity::class.java))
+  2. 전달할 데이터를 넣는다. intent.putExtra(key, value)
+  3. startActivity(intent)를 작성한다.
 
+ * 다이얼 혹은 바로 전화 걸기
+  1. Manifest에 permission 추가.
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.DIAL_PHONE" />
+  2. "tel:" + 번호를 intent 정보로 넘긴다. 키 값은
+    Intent("android.intent.action.DIAL", Uri.parse(uriString))
+    Intent("android.intent.action.CALL", Uri.parse(uriString))
+  3. startActivity(intent)를 작성한다.
+
+ * startActivity 했을 때 하얀 화면만 나오는 경우
+  1. preview에 보이는 화면의 height 값이 실제 앱이 올라가는 화면의 height 값하고 달라서 발생하는 현상. -> 절대값으로 잡지않고 상대값 혹은 wrap_content 등을 사용하여 해결
+  2. 잘못된 onCreate를 사용했을 때, UI 초기화에 사용하는건 persistableState가 없는 것이므로, onCreate(savedInstanceState)인 onCreate를 사용해야 제대로 호출되고 view를 초기화 할 수 있다.
+
+ * 코틀린에서의 물음표 
+  코틀린은 안전한 null 사용 방법을 제공한다. ?를 사용하면 null 가능
+  var A : string? = null
+  A.length
+  => Error 발생, A가 null이 될 수 있기 때문에 length 호출 불가. -> val length = if (A) != null) (A as String).length else -1 또는 A!!.length하면 강제로 호출 가능
+
+ * warp_content(필요한 길이만 사용, 절대값 사용 가능) VS match_parent(해당 레이아웃을 가진 부모의 컨테이너 길이를 모두 사용)
+
+ * lateinit
+ // 참고 : https://kkangsnote.tistory.com/67

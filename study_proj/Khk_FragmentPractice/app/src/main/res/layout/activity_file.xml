@@ -10,15 +10,28 @@
 
     <EditText
             android:layout_width="wrap_content"
-            android:layout_height="427dp"
+            android:layout_height="164dp"
             android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/editText"/>
 
     <Button
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:id="@+id/saveButton"
             android:text="save"/>
+
+    <EditText
+            android:layout_width="263dp"
+            android:layout_height="127dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/numText"/>
+
+    <Button
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:id="@+id/callButton"
+            android:text="Call"/>
 
 </LinearLayout>

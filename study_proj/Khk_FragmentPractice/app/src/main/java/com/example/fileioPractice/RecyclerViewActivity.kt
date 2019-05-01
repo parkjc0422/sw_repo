@@ -1,6 +1,5 @@
 package com.example.fileioPractice
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
@@ -14,10 +13,20 @@ class RecyclerViewActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
+        init()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        init()
+    }
+
+    private fun init(){
 
         setContentView(R.layout.activity_recycler_view)
 
-         var stringList: List<String> = intent.getStringArrayListExtra(Constants.VAL_INTENT_NAME)
+        // Activity로 부터 데이터를 받음.
+        var stringList: List<String> = intent.getStringArrayListExtra(Constants.VAL_INTENT_NAME)
 
         val adapter = CustomAdapter(this, stringList)
         mRecyclerView.adapter =  adapter
@@ -27,5 +36,4 @@ class RecyclerViewActivity : AppCompatActivity(){
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
-
 }
