@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String receiver = editText.getText().toString();
+                /**
+                 * ACTION_DIAL
+                 */
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ receiver));
 
                 startActivity(intent);
@@ -73,6 +76,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnFileWrite(View v) {
+        /**
+         * getFilesDir : 안드로이드의 내부 파일구조
+         *
+         * 1. 내부 파일
+         * 2. external storage(외부 공간)
+         *
+         * 1번의 경우 강제로 외부에서 찾아 갈 수는 있으나, 경로가 찾기 비교적 어렵게 되어있다.
+         * 2번의 경우 공유폴더 같은 개념으로 Download등과 같이 다른 앱들이 공유 하기 위한 공간으로 사용된다.
+         */
+
+
         String filePath = getFilesDir().toString();
         String sTimeKey = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         try{

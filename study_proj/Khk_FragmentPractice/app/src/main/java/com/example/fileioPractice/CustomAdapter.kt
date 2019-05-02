@@ -14,6 +14,10 @@ class CustomAdapter constructor(context: Context, items : List<String>) : Recycl
     private var items : List<String> = items
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+        /**
+         * ? !! 이 둘의 차이를 아는가
+         *
+         */
         holder?.bind(items[position], context)
     }
 
