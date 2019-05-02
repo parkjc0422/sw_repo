@@ -26,7 +26,7 @@ class RecyclerViewActivity : AppCompatActivity(){
         setContentView(R.layout.activity_recycler_view)
 
         // Activity로 부터 데이터를 받음.
-        var stringList: List<String> = intent.getStringArrayListExtra(Constants.VAL_INTENT_NAME)
+        var stringList: List<String> = intent.getStringArrayListExtra(Constants.VAL_INTENT_KEY_STRINGLIST)
 
         val adapter = CustomAdapter(this, stringList)
         mRecyclerView.adapter =  adapter

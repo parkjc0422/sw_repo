@@ -112,3 +112,30 @@ android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.s
 
  * lateinit
  // 참고 : https://kkangsnote.tistory.com/67
+
+ * inflation (부풀리다.)
+  - 레이아웃 xml에 명시한 것을 안드로이드 메모리에 생성하는 과정, xml에 씌여져 있는 view의 정의를 실제 view 객체로 만드는 역할.
+  - xml 로 명시 안하고 java or kotlin으로 view를 만들 수 있다.
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        LinearLayout linear = new LinearLayout(this);
+        linear.setOrientation(LinearLayout.VERTICAL);
+        linear.setBackgroundColor(Color.WHITE);
+         
+        TextView text = new TextView(this);
+        text.setText("코드로 생성");
+        text.setGravity(Gravity.CENTER);
+        text.setTextColor(Color.RED);
+        text.setTextSize(20);
+         
+        linear.addView(text); //부모 자식관계 설정과정
+        setContentView(linear);
+    }
+
+  - complie time 후의 xml만 가능(runtime은 불가)
+ 
+  // 참고 : https://aroundck.tistory.com/39
+  // https://bryant.tistory.com/80
+
+ * reflection(::)

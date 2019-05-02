@@ -5,11 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import com.example.fragmentpractice.R
 import java.io.*
 import android.net.Uri
 import com.example.common.Constants
+import com.example.common.showExceptionByToast
 
 class FileActivity : AppCompatActivity() {
 
@@ -31,7 +31,7 @@ class FileActivity : AppCompatActivity() {
 
         }
         catch(ex: Exception){
-            exceptionHandler(ex)
+            showExceptionByToast(this, ex)
         }
     }
     /**
@@ -51,7 +51,7 @@ class FileActivity : AppCompatActivity() {
             bufferedWriter.close()
         }
         catch(ex:Exception){
-            exceptionHandler(ex)
+            showExceptionByToast(this, ex)
         }
 
         try{
@@ -63,11 +63,11 @@ class FileActivity : AppCompatActivity() {
             fileLineList = bufferedReader.readLines()
 
             var intent = Intent(this, RecyclerViewActivity::class.java)
-            intent.putExtra(Constants.VAL_INTENT_NAME, ArrayList(fileLineList))
+            intent.putExtra(Constants.VAL_INTENT_KEY_STRINGLIST, ArrayList(fileLineList))
             startActivity(intent)
         }
         catch(ex:Exception){
-            exceptionHandler(ex)
+            showExceptionByToast(this, ex)
         }
     }
 
@@ -80,14 +80,11 @@ class FileActivity : AppCompatActivity() {
     private fun call(numText : String){
         try {
             var uriString = "tel:" + numText
-            startActivity(Intent("android.intent.action.DIAL", Uri.parse(uriString)))
+            startActivity(Intent(Constants.VAL_INTENT_KEY_DIAL, Uri.parse(uriString)))
         }catch (ex:Exception){
-            exceptionHandler(ex)
+            showExceptionByToast(this, ex)
         }
     }
     
-    private fun exceptionHandler(ex : Exception){
-        ex.printStackTrace()
-        Toast.makeText(this, ex.message, Toast.LENGTH_LONG)
-    }
+
 }
