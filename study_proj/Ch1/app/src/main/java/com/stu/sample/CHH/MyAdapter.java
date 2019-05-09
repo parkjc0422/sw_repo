@@ -11,21 +11,21 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
-    int ip;
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+        TextView txtName;
+        TextView txtNum;
 
         ViewHolder(View view){
             super(view);
-            imageView = view.findViewById(R.id.image);
-            textView = view.findViewById(R.id.textView);
+            txtName = view.findViewById(R.id.txtName);
+            txtNum = view.findViewById(R.id.txtNum);
         }
     }
 
-    private ArrayList<itemData> itemData;
-    MyAdapter(ArrayList<itemData> itemData){
-        this.itemData = itemData;
+    private ArrayList<Info> infoList;
+    MyAdapter(ArrayList<Info> infoList){
+        this.infoList = infoList;
     }
 
     @Override
@@ -41,13 +41,12 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
         ViewHolder ViewHolder = (ViewHolder) holder;
 
-        ViewHolder.imageView.setImageResource(itemData.get(position).num);
-        ViewHolder.textView.setText(itemData.get(position).text);
-        ip = ViewHolder.getAdapterPosition();
+        ViewHolder.txtName.setText(infoList.get(position).getpNum());
+        ViewHolder.txtNum.setText(infoList.get(position).getpNum());
     }
 
     @Override
     public int getItemCount() {
-        return itemData.size();
+        return infoList.size();
     }
 }

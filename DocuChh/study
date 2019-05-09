@@ -38,3 +38,20 @@ Intent
                 startActivity(intent);
 
 		)this.
+
+
+Realm DB
+- 모바일에 최적화된 로컬 데이터베이스 라이브러리, 데이터를 객체의 형태로 저장 (스마트폰 자체가 DB역할)
+- ORM(Object-Relational mapping)은 객체와 데이터베이스의 테이블 사이에서 중간다리로 데이터를 매핑하는 역할
+  본래 객체의 데이터를 데이터베이스에 저장하려면 쿼리문을 사용해야 함
+- Realm은 데이터 컨테이너 모델을 사용해 객체를 직접 데이터베이스에 저장. 데이터를 중간에 변환할 필요가 없기 때문에 빠른 저장 및 불러오기 가능\
+
+특성
+- Realm 모델 객체는 특정 객체를 상속받거나 구현해야함; RealmObject를 상속하거나 RealmModel을 구현
+- 무 복제 매커니즘과 크로스 플랫폼 호환성, 자동갱신 이점을 갖기 위함.
+- 무 복제 매커니즘 : 실제로 사용되기 전에는 java에 복제되지 않는 작동원리.
+- 자동 갱신 : 데이터를 추가하면 리스트 뷰가 자동으로 갱신되고, 자동으로 갱신된 데이터를 파악하기 위해 알림이 전달되며, 알림이 전달될 때 UI를 새로 그릴 수 있도록 함
+
+- 사용
+gradle(Project) : classpath 'io.realm:realm-gradle-plugin:3.5.0'
+gradle(Module)  : apply plugin: 'realm-android'
