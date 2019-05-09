@@ -1,6 +1,9 @@
 package com.example.fileioPractice
 
+import android.content.Context
 import android.content.Intent
+import android.media.AudioManager
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -8,16 +11,28 @@ import android.widget.EditText
 import com.example.fragmentpractice.R
 import java.io.*
 import android.net.Uri
+import com.example.common.AudioChangeListener
 import com.example.common.Constants
 import com.example.common.showExceptionByToast
 
 class FileActivity : AppCompatActivity() {
 
+    private lateinit var audioManager :AudioManager
+    private lateinit var audioChangeListener : AudioChangeListener
+    private lateinit var media : MediaPlayer
+    private var originSound : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_file)
 
+        audioManager = this.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audioChangeListener = AudioChangeListener(this)
+        media = MediaPlayer.create(this, R.raw.zoom)
+        originSound = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+
+        media.start()
+        audioManager.requestAudioFocus(audioChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN)
         try {
 
             val openButton = findViewById<Button>(R.id.saveButton)
@@ -34,6 +49,15 @@ class FileActivity : AppCompatActivity() {
             showExceptionByToast(this, ex)
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originSound, AudioManager.FLAG_PLAY_SOUND)
+        audioManager.abandonAudioFocus(audioChangeListener)
+        media.stop()
+    }
+
     /**
      *
      * EditText에 적힌 내용을 파일에 저장 후 RecyclerViewActivity로 넘긴다.
