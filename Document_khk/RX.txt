@@ -1,0 +1,5 @@
+ [RX - Reactive Extentions]
+ 데이터 흐름과 변화의 증식에 기반한 비동기 프로그래밍
+ 비동기 처리와 이벤트 기반의 프로그램 개발을 위해 
+
+// 참고: http://gaemi.github.io/android/2015/05/20/RxJava-with-Android-1-RxJava-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0.html
