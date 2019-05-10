@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">widget</string>
+    <string name="appwidget_text">hello_world</string>
+    <string name="appwidget_prefix_default">helloworld</string>
+</resources>
