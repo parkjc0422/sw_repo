@@ -1,8 +1,8 @@
 package com.example.fragmentpractice
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import khttp.post
 

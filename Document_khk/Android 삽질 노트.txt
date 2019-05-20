@@ -138,4 +138,9 @@ android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.s
   // 참고 : https://aroundck.tistory.com/39
   // https://bryant.tistory.com/80
 
+  * 'com.android.support libraries must use the exact same version specification'
+  일부 라이브러리들의 버전이 일치해야하는데 일치하지 않아서 발생하는 현상.
+  내 경우는 cardView 및 customtabs가 버전이 낮아서 발생함.
+  버전 맞지 않는 라이브러리 마다 gradle dependency에 추가함.
+
  * reflection(::)
