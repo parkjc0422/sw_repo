@@ -155,4 +155,11 @@ android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.s
   내 경우는 cardView 및 customtabs가 버전이 낮아서 발생함.
   버전 맞지 않는 라이브러리 마다 gradle dependency에 추가함.
 
- * reflection(::)
+  * SNS API 콜을 위한 키 해시 등록 -
+    - C:\Users\{rpDesk\.android> keytool -exportcert -alias androiddebugkey -keystore debug.keystore -storepass android -keypass android | openssl sha1 -binary | openssl base64
+    - keytool : JAVA_HOME/bin 아래에 존재 (path 잡으면 아무곳에서 상관 X)
+    - openssl : 별도 설치 필요
+
+    + 코드로 키해시 구할 수 있음.
+
+  * 로그인 이후에 '카카오 계정 로그인을 사용하기 위해서는 사용자 관리를 설정해야 합니다.' 라는 문구가 발생하면, 카카오 개발자 API에 들어가서 사용자 관리 설정을 추가적으로 해야 한다.

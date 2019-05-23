@@ -1,15 +1,22 @@
 package com.example.snsPractice;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import com.example.fragmentpractice.R;
+import com.kakao.auth.AuthType;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.LoginButton;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.MeResponseCallback;
+import com.kakao.usermgmt.response.model.UserProfile;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.log.Logger;
 
-public class SampleLoginActivity extends Activity {
+public class SampleLoginActivity extends AppCompatActivity {
     private SessionCallback callback;
 
     /**
@@ -22,9 +29,16 @@ public class SampleLoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        callback = new SessionCallback();
-        Session.getCurrentSession().addCallback(callback);
-        Session.getCurrentSession().checkAndImplicitOpen();
+        LoginButton button = findViewById(R.id.com_kakao_login);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback = new SessionCallback();
+                Session.getCurrentSession().addCallback(callback);
+                Session.getCurrentSession().checkAndImplicitOpen();
+            }
+        } );
     }
 
     @Override
@@ -42,13 +56,22 @@ public class SampleLoginActivity extends Activity {
         Session.getCurrentSession().removeCallback(callback);
     }
 
+    /**
+     * 로그인 결과를 전달 받기 위한 Callback 클래스
+     * */
     private class SessionCallback implements ISessionCallback {
 
+        /**
+         * 로그인 성공한 상태.
+         * */
         @Override
         public void onSessionOpened() {
             redirectSignupActivity();
         }
 
+        /**
+         * 로그인 실패한 상태.
+         * */
         @Override
         public void onSessionOpenFailed(KakaoException exception) {
             if(exception != null) {
@@ -58,8 +81,23 @@ public class SampleLoginActivity extends Activity {
     }
 
     protected void redirectSignupActivity() {
-        final Intent intent = new Intent(this, SampleLoginActivity.class);
-        startActivity(intent);
-        finish();
+
+        UserManagement.getInstance().requestMe(new MeResponseCallback() {
+            @Override
+            public void onSessionClosed(ErrorResult errorResult) {
+                Logger.e("세션 닫힘 : " + errorResult.getErrorMessage());
+            }
+
+            @Override
+            public void onNotSignedUp() {
+                Logger.e("Not Signed Up." );
+            }
+
+            @Override
+            public void onSuccess(UserProfile result) {
+                Logger.e("김홍규 닉네임 : " + result.getNickname());
+            }
+        });
+
     }
 }
