@@ -8,11 +8,12 @@
             android:label="FragmentPractice"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
-        <activity android:name="com.example.fileioPractice.FileActivity">
+            android:theme="@style/AppTheme"
+            android:name="com.example.snsPractice.GlobalApplication">
 
-        </activity>
+        <activity android:name=".MainActivity"/>
+
+        <activity android:name="com.example.fileioPractice.FileActivity"/>
         <activity android:name="com.example.fileioPractice.RecyclerViewActivity"/>
         <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
 
@@ -25,11 +26,14 @@
             </intent-filter>
         </activity>
         <activity android:name = "com.example.snsPractice.SNSActivity">
+        </activity>
+        <activity android:name="com.example.snsPractice.SampleLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
 
         <meta-data android:name="com.facebook.accountkit.ApplicationName"
                    android:value="@string/app_name" />
@@ -39,6 +43,9 @@
                    android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN" />
         <meta-data android:name="com.facebook.accountkit.FacebookAppEventsEnabled"
                    android:value="false"/>
+        <meta-data
+                android:name="com.kakao.sdk.AppKey"
+                android:value="@string/kakao_app_key" />
 
     </application>
 

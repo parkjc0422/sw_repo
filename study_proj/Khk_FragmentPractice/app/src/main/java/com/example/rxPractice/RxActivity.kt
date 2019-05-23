@@ -2,17 +2,11 @@ package com.example.rxPractice
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.EditText
 import com.example.fragmentpractice.R
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import org.reactivestreams.Subscriber
-import java.util.*
-import java.util.concurrent.TimeUnit
-
+import io.reactivex.rxkotlin.subscribeBy
 
 class RxActivity : AppCompatActivity(){
 
@@ -21,16 +15,18 @@ class RxActivity : AppCompatActivity(){
     private lateinit var numText : EditText
     private lateinit var toastText : EditText
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file)
-        var timer: Timer? = Timer()
 
-        numText = findViewById<EditText>(R.id.numText)
-        toastText = findViewById<EditText>(R.id.toastText)
+        numText  = findViewById(R.id.numText)
 
+        val source = Observable.just("Alpha", "Beta", "Delta", "Epsilon")
 
+        val lengthGroupObservable = source.groupBy { it.length }
+
+        lengthGroupObservable.flatMapSingle { it.toList() }.subscribeBy( onNext = { println( it ) } )
 
 /*
         Observable.create(Observable.OnSubscribe<String>{ subscriber : Subscriber<String> ->
@@ -47,10 +43,9 @@ class RxActivity : AppCompatActivity(){
             .subscribe({
                     text :String ->
                 toastText.text = "Output : " + text
-            })*/
+            })
 
 
-        /*I
         numText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = Unit
 
@@ -66,14 +61,12 @@ class RxActivity : AppCompatActivity(){
                     }
                 }, 1000)
             }
-        })
-        */
+        })*/
+
     }
 
     override fun onStop() {
         super.onStop()
         disposables.clear()
     }
-
-
 }

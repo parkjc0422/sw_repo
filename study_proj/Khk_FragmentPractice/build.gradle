@@ -5,10 +5,9 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -16,11 +15,19 @@ buildscript {
     }
 }
 
+apply plugin: "org.jetbrains.kotlin.android.extensions"
+
 allprojects {
     repositories {
         google()
         jcenter()
         
+    }
+}
+subprojects {
+    repositories {
+        mavenCentral()
+        maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/' }
     }
 }
 
