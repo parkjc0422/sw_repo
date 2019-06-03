@@ -165,15 +165,17 @@ android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.s
   * 로그인 이후에 '카카오 계정 로그인을 사용하기 위해서는 사용자 관리를 설정해야 합니다.' 라는 문구가 발생하면, 카카오 개발자 API에 들어가서 사용자 관리 설정을 추가적으로 해야 한다.
 
  * Retrofit + Okhttp
-  - Retrofit : HTTP 통신용 라이브러리
+  - Retrofit : 통신 라이브러리를 맵핑하여 REST 방식의 호출을 사용할 수 있게 하는 라이브러리. 클라이언트를 통해 얻어온 정보를 Json, Gson, Rx 등 유연하게 맵핑하게 도와줌.
    - baseUrl(url : String) : http 통신 할 url
    - addConverterFactory(converter : Converter.Factory) : 컨버팅할 Factory 설정 (예. .addConverterFactory(GsonConverterFactory.create()))
   - intercept : OkHttp에서 사용. 네트워크 통신 도중 공통적으로 실어 보내거나 받아쓸 때 사용. (App단(App - OkHttp Core) , Network단(OkHttp Core - App))
   - NetworkInterceptor : interceptor 구현 후 addInterceptor로 추가
   - ApplicationInterceptor : interceptor 구현, intercept라는 오버라이딩 함수를 이용하여 구현.
+  - OkHttp : HTTP 호출시에 각종 값들을 셋팅할 수 있게 도와주는 라이브러리, Retrofit과 같이 사용되는 이유는 OkHttp를 통해 쿠키, timeout, log 등 각종 HTTP와 관련된 통신을 돕는다.  
 
  // 참조: https://developer88.tistory.com/67 (Retrofit + okhttp + rx 모두 같이 사용)
-
+ // 참조: https://gamjatwigim.tistory.com/53 (Retrofit + okhttp + rx 모두 같이 사용)
+ 
  * broadcast & service
 
   - 코드
