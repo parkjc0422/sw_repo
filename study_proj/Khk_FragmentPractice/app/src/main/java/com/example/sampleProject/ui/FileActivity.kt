@@ -1,4 +1,4 @@
-package com.example.fileioPractice
+package com.example.sampleProject.ui
 
 import android.content.Context
 import android.content.Intent
@@ -10,9 +10,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import com.example.common.AudioChangeListener
-import com.example.common.Constants
-import com.example.common.showExceptionByToast
+import com.example.sampleProject.sound.AudioChangeListener
+import com.example.sampleProject.common.showExceptionByToast
 import com.example.fragmentpractice.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -104,7 +103,7 @@ class FileActivity : AppCompatActivity() {
             fileLineList = bufferedReader.readLines()
 
             var intent = Intent(this, RecyclerViewActivity::class.java)
-            intent.putExtra(Constants.VAL_INTENT_KEY_STRINGLIST, ArrayList(fileLineList))
+            intent.putExtra(R.string.VAL_INTENT_KEY_STRINGLIST.toString(), ArrayList(fileLineList))
             startActivity(intent)
         }
         catch(ex:Exception){
@@ -121,7 +120,7 @@ class FileActivity : AppCompatActivity() {
     private fun call(numText : String){
         try {
             var uriString = "tel:" + numText
-            startActivity(Intent(Constants.VAL_INTENT_KEY_DIAL, Uri.parse(uriString)))
+            startActivity(Intent(R.string.VAL_INTENT_KEY_DIAL.toString(), Uri.parse(uriString)))
         }catch (ex:Exception){
             showExceptionByToast(this, ex)
         }

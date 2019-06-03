@@ -1,4 +1,4 @@
-package com.example.rxPractice
+package com.example.sampleProject.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

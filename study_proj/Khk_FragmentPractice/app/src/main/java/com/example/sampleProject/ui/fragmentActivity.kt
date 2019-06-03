@@ -1,12 +1,14 @@
-package com.example.fragmentpractice
+package com.example.sampleProject.ui
 
 import android.os.Bundle
 import android.os.StrictMode
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
+import com.example.fragmentpractice.R
+import com.example.sampleProject.ui.fragment.FragmentA
 import khttp.post
 
-class MainActivity : AppCompatActivity() {
+class fragmentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +36,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (getTopFragment == null) {
-            supportFragmentManager.beginTransaction().add(R.id.fragment, FragmentA()).commit()
+            supportFragmentManager.beginTransaction().add(
+                R.id.fragment,
+                FragmentA()
+            ).commit()
         } else {
             supportFragmentManager.popBackStack()
-            supportFragmentManager.beginTransaction().replace(R.id.fragment, FragmentA())
+            supportFragmentManager.beginTransaction().replace(
+                R.id.fragment,
+                FragmentA()
+            )
 
         }
     }

@@ -1,4 +1,4 @@
-package com.example.common
+package com.example.sampleProject.sound
 
 import android.content.Context
 import android.media.AudioManager

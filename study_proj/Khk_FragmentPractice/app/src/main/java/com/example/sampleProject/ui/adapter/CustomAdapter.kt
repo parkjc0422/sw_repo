@@ -1,4 +1,4 @@
-package com.example.fileioPractice
+package com.example.sampleProject.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -14,10 +14,6 @@ class CustomAdapter constructor(context: Context, items : List<String>) : Recycl
     private var items : List<String> = items
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        /**
-         * ? !! 이 둘의 차이를 아는가
-         *
-         */
         holder?.bind(items[position], context)
     }
 

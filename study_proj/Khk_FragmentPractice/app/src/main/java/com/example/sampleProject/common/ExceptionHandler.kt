@@ -1,4 +1,4 @@
-package com.example.common
+package com.example.sampleProject.common
 
 import android.content.Context
 import android.widget.Toast

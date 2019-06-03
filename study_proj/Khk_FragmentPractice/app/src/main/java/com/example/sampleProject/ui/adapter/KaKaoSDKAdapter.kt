@@ -1,5 +1,6 @@
-package com.example.snsPractice
+package com.example.sampleProject.ui.adapter
 
+import com.example.sampleProject.GlobalApplication
 import com.kakao.auth.*
 
 class KaKaoSDKAdapter : KakaoAdapter(){

@@ -9,12 +9,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            android:name="com.example.snsPractice.GlobalApplication">
+            android:name="com.example.sampleProject.GlobalApplication">
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name="com.example.sampleProject.ui.fragmentActivity"/>
 
-        <activity android:name="com.example.fileioPractice.FileActivity"/>
-        <activity android:name="com.example.fileioPractice.RecyclerViewActivity"/>
+        <activity android:name="com.example.sampleProject.ui.FileActivity"/>
+        <activity android:name="com.example.sampleProject.ui.RecyclerViewActivity"/>
         <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
 
         <activity android:name="com.facebook.accountkit.ui.AccountKitEmailRedirectActivity">
@@ -25,9 +25,9 @@
                 <data android:scheme="@string/ak_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name = "com.example.snsPractice.SNSActivity">
+        <activity android:name = "com.example.sampleProject.snsPractice.SNSActivity">
         </activity>
-        <activity android:name="com.example.snsPractice.SampleLoginActivity">
+        <activity android:name="com.example.sampleProject.ui.SampleLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
