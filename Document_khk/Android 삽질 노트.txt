@@ -165,6 +165,9 @@ android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.s
   * 로그인 이후에 '카카오 계정 로그인을 사용하기 위해서는 사용자 관리를 설정해야 합니다.' 라는 문구가 발생하면, 카카오 개발자 API에 들어가서 사용자 관리 설정을 추가적으로 해야 한다.
 
  * Retrofit + Okhttp
+  - Retrofit : HTTP 통신용 라이브러리
+   - baseUrl(url : String) : http 통신 할 url
+   - addConverterFactory(converter : Converter.Factory) : 컨버팅할 Factory 설정 (예. .addConverterFactory(GsonConverterFactory.create()))
   - intercept : OkHttp에서 사용. 네트워크 통신 도중 공통적으로 실어 보내거나 받아쓸 때 사용. (App단(App - OkHttp Core) , Network단(OkHttp Core - App))
   - NetworkInterceptor : interceptor 구현 후 addInterceptor로 추가
   - ApplicationInterceptor : interceptor 구현, intercept라는 오버라이딩 함수를 이용하여 구현.
@@ -256,3 +259,9 @@ android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.s
  * 파일 공간
   - EXTERN(public)
   - Asset (외부에서 절대 접근 불가) : App만 접근 가능. getFiles()로 접근 가능.
+
+ * open class, final class
+  - open은 상속가능
+  - final은 상속 불가능, 하위 클래스에서 오버라이딩 제한, kotlin 기본 클래스
+
+  // 참조 : https://medium.com/@joongwon/kotlin-kotlin-%ED%82%A4%EC%9B%8C%EB%93%9C-%EB%B0%8F-%EC%97%B0%EC%82%B0%EC%9E%90-%ED%95%B4%EB%B6%80-part-3-59ff3ed736be [코틀린 키워드]
