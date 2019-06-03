@@ -8,7 +8,7 @@ package com.stu.sample.user.PJC.study_retrofit
 
 class TestRetrofit {
     fun test () {
-        var apiService = CustomerServiceImpl().getService()
+        var apiService = CustomServiceImpl().getService()
         apiService.enqueue(onSuccess = {
 
         }, onError=  {

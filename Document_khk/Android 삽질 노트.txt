@@ -163,3 +163,96 @@ android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.s
     + 코드로 키해시 구할 수 있음.
 
   * 로그인 이후에 '카카오 계정 로그인을 사용하기 위해서는 사용자 관리를 설정해야 합니다.' 라는 문구가 발생하면, 카카오 개발자 API에 들어가서 사용자 관리 설정을 추가적으로 해야 한다.
+
+ * Retrofit + Okhttp
+  - intercept : OkHttp에서 사용. 네트워크 통신 도중 공통적으로 실어 보내거나 받아쓸 때 사용. (App단(App - OkHttp Core) , Network단(OkHttp Core - App))
+  - NetworkInterceptor : interceptor 구현 후 addInterceptor로 추가
+  - ApplicationInterceptor : interceptor 구현, intercept라는 오버라이딩 함수를 이용하여 구현.
+
+ // 참조: https://developer88.tistory.com/67 (Retrofit + okhttp + rx 모두 같이 사용)
+
+ * broadcast & service
+
+  - 코드
+    // 시스템이 broadcast 해주는 intent를 받아 냄.
+    public class BootReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // ACTION_BOOT_COMPLETED - intent enum type이 부팅 완료.
+          if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+            Intent i = new Intent(context, test.class);
+            context.startService(i);
+          }
+        }
+    }
+
+  - androidManifest.xml에 등록
+    <receiver android:name=".BootReceiver"
+              android:enabled="true"
+              android:exported="false" >
+              <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+              </intent-filter>
+    </receiver>
+    
+ // 참조 : https://ccdev.tistory.com/27
+
+ * runOnUIThread 
+  - 현재 스레드가 UI 스레드라면 UI 자원을 사용하는 행동에 대해선 바로 실행, 아니면 큐에 들어간다.
+
+  // 참조 : https://itmining.tistory.com/6
+ 
+ * preference
+  - onStop, onPause 등과 같은 메서드 내에서 일부 데이터를 저장하는 용도 (소리 값이나 치고있던 텍스트 등을 저장하는 용도)
+  - apply VS commit : 비동기 VS 동기
+    apply는 비동기로 처리함으로써 빠르고 반환형이 없다. 그러나 실패시 알림 받을수 없다.
+    commit은 동기로 처리함으로써 느리고 반환형이 있다.
+  
+ * JNI (Java Native Interface)
+  - 자바 외의 다른언어들과 자바 사이에 연결을 위한 인터페이스
+  - C/C++에서 사용하거나 사용되기 위함.
+
+ // 참조 : https://re-build.tistory.com/7
+
+ * gson
+  - 구글에서 만든 JSON 관련 라이브러리
+  - byte -> gson string -> object Mapping
+
+ * glide : 이미지 처리 라이브러리, 이미지들을 비동기적으로 로드(빠름), 자체 캐시관리
+  - with(context : Context) : 안드로이드 API를 사용하기 위함.
+  - load(imageURL : String) : 이미지를 불러올 리소스 혹은 url 혹은 로컬파일 
+  - into(view : View) : 이미지를 보여줄 뷰
+  - thumbnail(ratio : float) : 배수 값을 주어 썸네일 크기를 지정.
+
+  // 참조 : http://dktfrmaster.blogspot.com/2016/09/glide.html
+
+ * $위젯 
+  - 뷰가 많이 제한됨. N*M : 픽스된 뷰, onUpdate 처리가 제일 중요. 위젯은 여러개가 가능하기 때문에 배열(IDs)로 받음. provider 내부는 broadCaster 리시버로 구성.
+
+ * $카메라 : surfaceView(화면)
+
+ * $realm Object
+  - ERD는 String을 기반
+  - realm은 Object 자체를 기본 타입으로 둔다.
+
+ * OAuth 인증 
+  - 발렛키 (일정 수준의 운행만 가능하도록 제한을 둔 자동차 키. 제한)를 예로 들면 제한적 인증이라 생각하면 됨.
+  - Access Token이 발렛키와 같음.
+  - 인증 요청 후 인증 부여(SNS 로그인) -> 인증 부여 확인 및 엑세스 토큰 요청 (SNS 접근 확인 절차) -> 엑세스 토큰 부여 (로그인 목적을 위한 엑세스 토큰 부여)
+
+ * $Reactive 
+  - 비동기 : - 메인 스레드(UI)를 자연스럽게 하려면 무겁고 시간이 오래걸리는 작업은 백그라운드에서 다른 스레드 혹은 서버나 다른 것에 위임시켜서 시킨다.
+  - 데이터 흐름과 변화 전파에 중점. 데이터 흐름을 프로그램 언어로 쉽게 변할 수 있어야 하고, 데이터 흐름을 통해 하부 모델이 자동으로 변화를 전파할 수 있는 것을 의미
+ 
+ [RX - Reactive Extentions]
+ 데이터 흐름과 변화의 증식에 기반한 비동기 프로그래밍
+ 비동기 처리와 이벤트 기반의 프로그램 개발을 위해 
+ 
+ * Observable.just(stringObj) - 단순히 모든 구독자에게 stringObj를 보낸다.
+ * Observable.from(listOf(1,2,3,4,5)) - Iteratable, future, 배열로 옵저버블을 만든다. 1,2,3,4,5 순서대로 보낸다.
+
+// 참고: http://gaemi.github.io/android/2015/05/20/RxJav
+
+ * 파일 공간
+  - EXTERN(public)
+  - Asset (외부에서 절대 접근 불가) : App만 접근 가능. getFiles()로 접근 가능.
