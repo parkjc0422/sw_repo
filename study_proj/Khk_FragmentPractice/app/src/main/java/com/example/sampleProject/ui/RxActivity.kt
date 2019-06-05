@@ -3,7 +3,7 @@ package com.example.sampleProject.ui
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
-import com.example.fragmentpractice.R
+import com.example.sampleProject.R
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy

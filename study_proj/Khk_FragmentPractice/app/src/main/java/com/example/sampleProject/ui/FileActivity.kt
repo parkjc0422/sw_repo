@@ -12,7 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.sampleProject.sound.AudioChangeListener
 import com.example.sampleProject.common.showExceptionByToast
-import com.example.fragmentpractice.R
+import com.example.sampleProject.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo

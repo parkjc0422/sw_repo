@@ -1,4 +1,4 @@
-package com.example.fragmentpractice
+package com.example.sampleProject
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.fragmentpractice.R
+import com.example.sampleProject.R
 
 class CustomAdapter constructor(context: Context, items : List<String>) : RecyclerView.Adapter<CustomViewHolder>(){
 

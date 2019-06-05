@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
-import com.example.fragmentpractice.R
+import com.example.sampleProject.R
 import com.example.sampleProject.ui.fragment.FragmentA
 import khttp.post
 
-class fragmentActivity : AppCompatActivity() {
+class FragmentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

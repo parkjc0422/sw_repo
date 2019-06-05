@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.fragmentpractice"
+        applicationId "com.example.sampleProject"
         minSdkVersion 27
         targetSdkVersion 28
         versionCode 1
