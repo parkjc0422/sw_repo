@@ -99,7 +99,8 @@ class ContactActivity : AppCompatActivity() {
                 }
             })
         }
-            .filter{ !TextUtils.isEmpty(it)}
+                /** filter에 분기를 줄 수는 없나? */
+            //.filter{ !TextUtils.isEmpty(it) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{
                 Toast.makeText(this, "Searching => $it",Toast.LENGTH_SHORT).show()
@@ -107,12 +108,15 @@ class ContactActivity : AppCompatActivity() {
             }
 
 
+
         // debounce 이벤트 입력 후 지정 시간동안 추가 이벤트가 발생하지 않으면 마지막 이벤트를 발행
         // filter : 조건
         // observeOn : 특정 작업의 스케쥴러를 설정. Toast는 UI(Maiu) 스레드에서 동작하기 때문에 observeOn을 사용
-        // * subscribeOn : Observable이 동작하는 스케쥴러를 설정. Observable 객체가 실행 될 스레드를 정한다. 호출 시점과 상관 없음 X
+        /** */
+// * subscribeOn : Observable이 동작하는 스케쥴러를 설정. Observable 객체가 실행 될 스레드를 정한다. 호출 시점과 상관 없음 X
         // subscribe : 이벤트 실행 부분
-        // 1초 동안 아무 이벤트가 발생하지 않으면 subsctibe 부분이 실행된다.
+        // 1초 동안 아무 이벤트가 발생하지 않으면 subscribe 부분이 실행된다.
+
 //        source.debounce(1000L, TimeUnit.MILLISECONDS)
 //            .filter{ !TextUtils.isEmpty(it)}
 //            .observeOn(AndroidSchedulers.mainThread())
@@ -137,8 +141,6 @@ class ContactActivity : AppCompatActivity() {
 
         try {
 
-            var cursor : Cursor
-
             // uri : 컨텐츠 uri. content provider 의 테이블 이름에 매핑된다.
             // projection : 어떤 컬럼을 볼 지
             // selection : 조건문
@@ -147,18 +149,19 @@ class ContactActivity : AppCompatActivity() {
             var uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
             var projection = arrayOf(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
             var selection = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " LIKE ?"
-            var selectionArgs = arrayOf( "%" + filterString + "%")
+            var selectionArgs = arrayOf("%" + filterString + "%")
             var sortOrder = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC"
 
             // contentResolver : 컨텐츠 제공자. 외부 App에 대한 데이터를 표시. App 내에서 데이터를 공유하기 위한 컴포넌트.
             //                   App Layer와 Data Layer 사이에 존재.
             // VS SQLLite : Data에 직접 조회?
-            // ??
-            cursor = if(filterString.equals(null)){
+            /** */
+            var cursor = if (filterString.equals(null)) {
                 contentResolver.query(uri, projection, null, null, sortOrder)
             } else {
                 contentResolver.query(uri, projection, selection, selectionArgs, sortOrder)
             }
+
 
 
             // cursor를 결과의 첫번째 row로 이동시킨다.
@@ -172,6 +175,8 @@ class ContactActivity : AppCompatActivity() {
 
                 } while (cursor.moveToNext())
             }
+
+            cursor.close()
         }catch(ex:Exception){
             ex.printStackTrace()
         }
