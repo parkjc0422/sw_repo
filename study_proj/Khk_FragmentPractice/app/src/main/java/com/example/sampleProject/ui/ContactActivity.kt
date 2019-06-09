@@ -10,7 +10,6 @@ import com.example.sampleProject.ui.adapter.CustomAdapter
 import android.Manifest.permission
 import android.content.pm.PackageManager
 import android.database.Cursor
-import android.os.Build
 import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -35,10 +34,8 @@ class ContactActivity : AppCompatActivity() {
      * @author khk
      * */
     private fun callPermission() {
-        // 버전 체크 및 해당 퍼미션이 허용됐는지 확인 후 없으면 퍼미션 요청
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-            checkSelfPermission(permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-
+        // 해당 퍼미션이 허용됐는지 확인 후 없으면 퍼미션 요청
+        if (checkSelfPermission(permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             // requestCode인 PERMISSIONS_REQUEST_READ_CONTACTS는 식별하기 위해 사용자가 정의한다.
             // permission은 배열이므로 여러 개를 요청 할 수 있다.
             requestPermissions(arrayOf(permission.READ_CONTACTS), PERMISSIONS_REQUEST_READ_CONTACTS)
@@ -87,7 +84,7 @@ class ContactActivity : AppCompatActivity() {
     }
 
     private fun getContactList(filterString: String?) : List<String>{
-        var contactList = object : ArrayList<String>() {}
+        val contactList = object : ArrayList<String>() {}
         var cursor : Cursor? = null
         try {
             /**
@@ -97,11 +94,11 @@ class ContactActivity : AppCompatActivity() {
              * sortOrder : 정렬 기준
              * selectionArgs : 조건문에 들어갈 파라미터
              */
-            var uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
-            var projection = arrayOf(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
-            var selection = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " LIKE ?"
-            var selectionArgs = arrayOf( "%" + filterString + "%")
-            var sortOrder = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC"
+            val uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
+            val projection = arrayOf(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
+            val selection = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " LIKE ?"
+            val selectionArgs = arrayOf( "%" + filterString + "%")
+            val sortOrder = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC"
 
             cursor = if(filterString.equals(null)){
                 contentResolver.query(uri, projection, null, null, sortOrder)
@@ -114,11 +111,7 @@ class ContactActivity : AppCompatActivity() {
             // 커서가 empty면 false를 return 한다.
             if (cursor.moveToFirst()) {
                 do {
-
-                    var name = cursor.getString(INDEX_NAME)
-
-                    contactList.add(name)
-
+                    contactList.add(cursor.getString(INDEX_NAME))
                 } while (cursor.moveToNext())
             }
         }catch(ex:Exception){

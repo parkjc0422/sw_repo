@@ -267,3 +267,6 @@ android는 화면xml을 import 해주어야 한다. ex) import kotlinx.android.s
   - final은 상속 불가능, 하위 클래스에서 오버라이딩 제한, kotlin 기본 클래스
 
   // 참조 : https://medium.com/@joongwon/kotlin-kotlin-%ED%82%A4%EC%9B%8C%EB%93%9C-%EB%B0%8F-%EC%97%B0%EC%82%B0%EC%9E%90-%ED%95%B4%EB%B6%80-part-3-59ff3ed736be [코틀린 키워드]
+  
+ * contentResolver VS SQLLite
+ * permission 관련

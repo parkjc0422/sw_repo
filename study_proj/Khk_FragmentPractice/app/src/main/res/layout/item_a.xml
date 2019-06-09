@@ -9,15 +9,19 @@
               android:layout_marginBottom="2dp"
               android:layout_marginStart="4dp"
               android:layout_marginEnd="4dp"
-              android:id="@+id/firstLayout"
+              android:id="@+id/layoutA"
               >
     <TextView
-            android:id="@+id/lineStringTv"
+            android:id="@+id/textViewA"
             android:layout_width="185dp"
             android:layout_height="114dp"
             android:layout_marginStart="16dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="TEXT"
+            tools:text="TYPE A"
     />
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars[0]"
+            android:id="@+id/imageViewA"/>
 </LinearLayout>
