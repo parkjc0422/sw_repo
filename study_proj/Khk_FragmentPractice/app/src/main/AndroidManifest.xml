@@ -29,6 +29,9 @@
         <activity android:name="com.example.sampleProject.ui.SampleLoginActivity">
         </activity>
         <activity android:name="com.example.sampleProject.ui.ContactActivity">
+
+        </activity>
+        <activity android:name=".ui.FocusActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
