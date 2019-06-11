@@ -24,6 +24,9 @@ class CustomAdapter constructor(context: Context, items : List<String>) : Recycl
 
     override fun getItemCount(): Int = this.items.size
 
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
+    }
 }
 
 /**

@@ -11,3 +11,47 @@
   - View : ViewModel에게 유저의 동작 알려줌.
   - ViewModel : View 관련된 데이터 스트림
   - Model : Data 모델
+  
+  
+  
+        // observable : 계속해서 data를 emit, produce하는 collection
+        // 단순히 검색만 했다면 이벤트로만 등록해도 됨.
+        // onNext() : 데이터 발행
+//        Observable.create<CharSequence> { emitter ->
+//            contactCheckTextView.addTextChangedListener( object : TextWatcher {
+//                override fun afterTextChanged(s: Editable?) {
+//                }
+//
+//                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                }
+//
+//                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                    // let
+//                    //  null이 아니면 수행.
+//                    // 변수 뿐만 아니라 함수를 호출하는 객체를 이어지는 블록의 파라미터로 넘기고, 블록의 결과 값을 반환
+//                    // 여기서의 반환 값은 onTextChanged의 반환 값이여야 하나 void 이므로 return 값이 없다.
+//                     s?.let{
+//                         // changedText 라는 인자이름을 생략하고 it로 가능
+//                         // textChanged 이벤트 발생 후 데이터 발행
+//                         changedText -> emitter.onNext(changedText)
+//
+//                     }
+//                }
+//            })
+//        }
+        // debounce 이벤트 입력 후 지정 시간동안 추가 이벤트가 발생하지 않으면 마지막 이벤트를 발행
+        // filter : 조건
+        // observeOn : 특정 작업의 스케쥴러를 설정. Toast는 UI(Maiu) 스레드에서 동작하기 때문에 observeOn을 사용
+        // * subscribeOn : Observable이 동작하는 스케쥴러를 설정. Observable 객체가 실행 될 스레드를 정한다. 호출 시점과 상관 없음 X
+        // subscribe : 이벤트 실행 부분
+        // 1초 동안 아무 이벤트가 발생하지 않으면 subsctibe 부분이 실행된다.
+//            //.debounce(1000L, TimeUnit.MILLISECONDS)
+//            .filter{ !TextUtils.isEmpty(it)}
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe{
+//                Toast.makeText(this, "Searching => $it",Toast.LENGTH_SHORT).show()
+//                reload()
+//            }
+        // 참고 : http://minsone.github.io/programming/reactive-swift-observeon-subscribeon
+        // https://jungwoon.github.io/rxjava2/2017/12/14/RxJava-1/
+
