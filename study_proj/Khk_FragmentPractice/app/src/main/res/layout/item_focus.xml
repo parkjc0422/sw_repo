@@ -29,5 +29,7 @@
             tools:text="input"
     />
 
-    <Button android:layout_width="40dp" android:layout_height="40dp"/>
+    <Button
+            android:id="@+id/focusButton"
+            android:layout_width="40dp" android:layout_height="40dp"/>
 </LinearLayout>
