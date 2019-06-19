@@ -5,38 +5,24 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.example.sampleProject.R
-import org.w3c.dom.Text
 
 class FocusAdapter constructor(context: Context, items : List<String>) : RecyclerView.Adapter<FocusViewHolder>(){
 
-    private var context : Context = context
     private var items : List<String> = items
-    private lateinit var mListner : RecyclerViewClickListener
-
-    interface RecyclerViewClickListener{
-        fun onFocusButtonClicked(pos : Int)
-    }
-
-    fun setOnClickListener(listener : RecyclerViewClickListener){
-        mListner = listener
-    }
+    private var context = context
 
     override fun onBindViewHolder(holder: FocusViewHolder, position: Int) {
-        holder?.bind(items[position], context)
 
-        if(mListner != null) {
-            holder.focusButton.setOnClickListener (object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    mListner.onFocusButtonClicked(position)
-                }
+        holder.focusButton.setOnClickListener {
 
-            })
+            /**
+             * wrong
+             * */
+            //View.OnClickListener { Toast.makeText(context,"$position : " +  holder.editTextView.text, Toast.LENGTH_SHORT).show() }
+            it.setOnClickListener { Toast.makeText(context,"$position : " +  holder.editTextView.text, Toast.LENGTH_SHORT).show()}
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FocusViewHolder {
@@ -44,19 +30,17 @@ class FocusAdapter constructor(context: Context, items : List<String>) : Recycle
         return FocusViewHolder(view)
     }
 
-    override fun getItemCount(): Int = this.items.size
+    override fun getItemCount(): Int = items.size
+
 }
 
 /**
- * item view에 set하는 역할.
+ * item에 대한 view를 set하는 역할.
  * @author khk
  * */
 class FocusViewHolder constructor(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-    var editTextView = itemView?.findViewById<TextView>(R.id.EditTextFocus)
-    var focusButton = itemView?.findViewById<Button>(R.id.focusButton)
+    var editTextView: EditText = itemView?.findViewById(R.id.EditTextFocus)
+    var focusButton: Button = itemView?.findViewById(R.id.focusButton)
 
-    fun bind(line: String, context: Context){
-        editTextView?.text = line
-    }
 }

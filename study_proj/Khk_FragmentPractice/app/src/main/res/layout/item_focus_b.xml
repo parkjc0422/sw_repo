@@ -9,26 +9,30 @@
               android:layout_marginBottom="2dp"
               android:layout_marginStart="4dp"
               android:layout_marginEnd="4dp"
-              android:id="@+id/layoutA"
+              android:id="@+id/layoutFocusB"
               >
-    <TextView
-            android:id="@+id/textViewA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+    <TextView android:id="@+id/TextViewFocusB"
+              android:layout_width="50dp"
+              android:layout_height="50dp"
+              android:layout_marginStart="16dp"
+              android:textSize="20sp"
+              android:textStyle="bold"
+              />
+    <EditText
+            android:id="@+id/EditTextFocusB"
+            android:layout_width="185dp"
+            android:layout_height="114dp"
             android:layout_marginStart="16dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="TYPE A"
-
+            tools:text="input"
     />
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars[0]"
-            android:id="@+id/imageViewA"/>
 
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            tools:text="C"
-            android:id="@+id/buttonC"
+    <Button
+            android:id="@+id/focusButtonB"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:text="B"
 
     />
 </LinearLayout>
