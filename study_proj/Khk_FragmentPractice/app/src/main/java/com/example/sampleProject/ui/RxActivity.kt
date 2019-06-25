@@ -29,7 +29,7 @@ class RxActivity : AppCompatActivity(){
         lengthGroupObservable.flatMapSingle { it.toList() }.subscribeBy( onNext = { println( it ) } )
 
 /*
-        Observable.create(Observable.OnSubscribe<String>{ subscriber : Subscriber<String> ->
+        Observable.create(RrxObservable.OnSubscribe<String>{ subscriber : Subscriber<String> ->
             numText.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) = Unit
 
