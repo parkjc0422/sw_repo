@@ -5,20 +5,23 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.brion.subwayproject.R
 import com.brion.subwayproject.route.RouteManager
-import com.brion.subwayproject.route.model.RouteMapper
-import com.brion.subwayproject.route.model.RouteMatching
+import com.brion.subwayproject.route.model.*
 import com.brion.subwayproject.route.provider.ConfigProvider
+import com.brion.subwayproject.route.provider.JsonDataAPI
 import com.brion.subwayproject.ui.custom.TrainDistributionAdapter
 import com.brion.subwayproject.ui.custom.TransferAdapter
 import com.brion.subwayproject.utils.krCurrency
 import kotlinx.android.synthetic.main.fragment_route_info.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RouteInfoFragment : Fragment() {
     enum class RouteApiType {
@@ -73,40 +76,114 @@ class RouteInfoFragment : Fragment() {
     /**
      * TODO : remake function
      */
+
+    lateinit var jsonName : String
+    lateinit var strDownloadToken : String
+
     private fun initData () {
+        val parent = activity as RouteActivity
+        parent.showProgress(true)
+        getItem("data.json", complete = {
+            jsonName = it.name
 
-        val adapter = TrainDistributionAdapter(context as Context)
+            getJsonInfo(jsonName, complete = {
+                strDownloadToken = it.downloadTokens
 
-        var item = TrainDistributionAdapter.TrainDistributionItem()
-        item.array = arrayOf(TrainDistributionAdapter.TrainType.Congest,
-            TrainDistributionAdapter.TrainType.Lite, TrainDistributionAdapter.TrainType.Normal,TrainDistributionAdapter.TrainType.Congest,
-            TrainDistributionAdapter.TrainType.Lite, TrainDistributionAdapter.TrainType.Normal)
-        item.linenNumber = "5호선 10분후 도착"
-        adapter.items.add(item)
+                getJsonData(jsonName, strDownloadToken, complete = {
+                    val jsonDataMap = it
+                    val adapter = TrainDistributionAdapter(context as Context)
 
-        var item4 = TrainDistributionAdapter.TrainDistributionItem()
-        item4.array = arrayOf(TrainDistributionAdapter.TrainType.Congest,
-            TrainDistributionAdapter.TrainType.Lite, TrainDistributionAdapter.TrainType.Normal,TrainDistributionAdapter.TrainType.Congest,
-            TrainDistributionAdapter.TrainType.Lite, TrainDistributionAdapter.TrainType.Normal)
-        item4.linenNumber = "5호선 20분후 도착"
-        adapter.items.add(item4)
+                    jsonDataMap.forEach{
+                        var item = TrainDistributionAdapter.TrainDistributionItem()
+                        item.linenNumber = it.key
 
-        var item3 = TrainDistributionAdapter.TrainDistributionItem()
-        item3.array = arrayOf(TrainDistributionAdapter.TrainType.Congest,
-            TrainDistributionAdapter.TrainType.Lite, TrainDistributionAdapter.TrainType.Normal,TrainDistributionAdapter.TrainType.Congest,
-            TrainDistributionAdapter.TrainType.Lite, TrainDistributionAdapter.TrainType.Normal)
-        item3.linenNumber = "5호선 30분후 도착"
-        adapter.items.add(item3)
+                        item.array = convertIntArrayToTrainTypeArray(it.value)
 
-        var item2 = TrainDistributionAdapter.TrainDistributionItem()
-        item2.array = arrayOf(TrainDistributionAdapter.TrainType.Congest,
-            TrainDistributionAdapter.TrainType.Lite, TrainDistributionAdapter.TrainType.Normal,TrainDistributionAdapter.TrainType.Congest,
-            TrainDistributionAdapter.TrainType.Lite, TrainDistributionAdapter.TrainType.Normal)
-        item2.linenNumber = "5호선 40분후 도착"
-        adapter.items.add(item2)
+                        adapter.items.add(item)
+                    }
+
+                    trainDistribution.adapter = adapter
+                    parent.showProgress(false)
+
+                })
+            })
+        })
 
 
-        trainDistribution.adapter = adapter
+    }
+
+    fun getItem (targetName : String, complete : (Item) -> Unit) {
+
+        var service = JsonDataAPI().getJsonDataService()
+
+        service.getJsonItems().enqueue(object : Callback<Items> {
+
+            override fun onFailure(call: Call<Items>, t: Throwable) {
+                Log.d("error", "${t.message}")
+                t.printStackTrace()
+            }
+
+            override fun onResponse(call: Call<Items>, response: Response<Items>) {
+                Log.d("info", "message : ${response.body()}")
+
+                var itemList = response.body()?.items
+                if (itemList != null) {
+                    for(item in itemList){
+                        if(item.name == targetName)
+                            complete(item)
+                    }
+                }
+                //var parser = RouteXmlParser("${response.body()}")
+            }
+        })
+    }
+
+    fun getJsonInfo(targetJson : String, complete : (JsonInfoModel) -> Unit){
+        var service = JsonDataAPI().getJsonDataService()
+
+        service.getJsonInfo(targetJson).enqueue(object : Callback<JsonInfoModel> {
+            override fun onFailure(call: Call<JsonInfoModel>, t: Throwable) {
+                Log.d("error", "${t.message}")
+                t.printStackTrace()
+            }
+
+            override fun onResponse(call: Call<JsonInfoModel>, response: Response<JsonInfoModel>) {
+                response.body()?.let { complete(it) }
+            }
+
+        })
+    }
+
+    fun getJsonData(targetJson: String, token : String, complete : (Map<String, Array<Int>>) -> Unit){
+        var service = JsonDataAPI().getJsonDataService()
+
+        service.getJsonDataMap(targetJson, "media", token).enqueue(object: Callback<Map<String, Array<Int>>> {
+            override fun onFailure(call: Call<Map<String, Array<Int>>>, t: Throwable) {
+                Log.d("error", "${t.message}")
+                t.printStackTrace()
+            }
+
+            override fun onResponse(call: Call<Map<String, Array<Int>>>, response: Response<Map<String, Array<Int>>>) {
+                if(response.isSuccessful) {
+                    response.body()?.let {
+                        complete(it)
+                    }
+                }
+            }
+        })
+    }
+    fun convertIntArrayToTrainTypeArray(intArray : Array<Int>) : Array<TrainDistributionAdapter.TrainType>{
+        val trainTypeArray : MutableList<TrainDistributionAdapter.TrainType> = mutableListOf()
+        intArray.forEach {
+            when(it){
+                0->{trainTypeArray.add(TrainDistributionAdapter.TrainType.Lite)}
+                1->{trainTypeArray.add(TrainDistributionAdapter.TrainType.Normal)}
+                else->{trainTypeArray.add(TrainDistributionAdapter.TrainType.Congest)}
+            }
+
+        }
+
+        return trainTypeArray.toTypedArray()
     }
 
     lateinit var routeModel:RouteMapper
